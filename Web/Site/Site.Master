@@ -1,0 +1,57 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Web.Site.Site" %>
+<%@ Register Src="~/Site/WUC/Footer.ascx" TagName="Footer" TagPrefix="wuc" %>
+
+<!DOCTYPE html>
+
+<html>
+    <head runat="server">
+        <title></title>
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+        <link href="../css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+        <link href="../css/site.css" rel="stylesheet" type="text/css" media="all">
+    </head>
+    <body>
+        <form id="form" runat="server">
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <asp:LinkButton ID="lnkHome" runat="server" Text="Contact Manager" CssClass="navbar-brand" OnClick="lnkHome_Click"></asp:LinkButton>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><asp:LinkButton id="lnkContacts" runat="server" Text="<%$ Resources:Resource, MisContactos%>" OnClick="lnkContacts_Click"></asp:LinkButton></li>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><asp:Label ID="lblDisplayName" runat="server"></asp:Label> <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><asp:LinkButton ID="lnkPreferences" runat="server" Text="<%$ Resources:Resource, Preferencias%>" OnClick="lnkPreferences_Click"></asp:LinkButton></li>
+                                    <li class="divider"></li>
+                                    <li><asp:LinkButton ID="lnkLogout" runat="server" Text="<%$ Resources:Resource, CerrarSesion%>" OnClick="lnkLogout_Click"></asp:LinkButton></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <asp:ContentPlaceHolder ID="site" runat="server">        
+            </asp:ContentPlaceHolder>
+
+            <wuc:Footer ID="Footer" runat="server" />
+
+            <script type="text/javascript" lang="javascript" src="<%= ResolveUrl("~/js/jquery-1.7.2.js")%>"></script>
+            <script type="text/javascript" lang="javascript" src="<%= ResolveUrl("~/js/bootstrap.js")%>"></script>
+        </form>
+    </body>
+</html>

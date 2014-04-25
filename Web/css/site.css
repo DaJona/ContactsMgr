@@ -1,0 +1,39 @@
+﻿body {
+    margin: 75px 20px 0 20px;
+}
+
+div.btnContainer {
+	width: 90%;
+	margin: 5px auto;
+}
+
+div.btnContainer .btn {
+	width: 100%;
+}
+
+.requiredField:before {
+    content: "*";
+}
+
+div.well ul.list-inline {
+	margin: 0;
+}
+div.well ul.list-inline li {
+	border-right: 1px gainsboro solid;
+}
+div.well ul.list-inline li:last-child {
+	border: none;
+}
+
+a,
+button {
+   outline: 0 none !important;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+table tr th.action {
+    width: 10px;
+}
