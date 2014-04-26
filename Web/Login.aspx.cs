@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.UI;
-using Entity.Login;
-using Service.Login;
+using Entity.Members;
+using Service.Members;
 using DTO.System;
 using System.Web;
 using Utilities;

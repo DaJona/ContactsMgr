@@ -40,7 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contacts\ContactsService.cs" />
-    <Compile Include="Login\MembersService.cs" />
+    <Compile Include="Members\MembersService.cs" />
     <Compile Include="Preferences\PreferencesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

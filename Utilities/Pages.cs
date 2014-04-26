@@ -32,6 +32,11 @@ namespace Utilities
             return ResolveUrl("~/Site/Preferences/Account");
         }
 
+        public static string getPreferencesPassword()
+        {
+            return ResolveUrl("~/Site/Preferences/Password");
+        }
+
         #endregion
 
         #region Contacts

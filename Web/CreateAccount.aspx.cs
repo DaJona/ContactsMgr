@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Entity.Login;
+using Entity.Members;
 using DTO.System;
-using Service.Login;
+using Service.Members;
 
 namespace Web
 {
@@ -30,7 +30,7 @@ namespace Web
                     enMember.realName = txtRealName.Text;
                     enMember.displayName = txtDisplayName.Text;
                     enMember.email = txtEmail.Text;
-                    enMember.password=txtPass1.Text;
+                    enMember.password = txtPass1.Text;
                     enMember.language = ddlLanguage.SelectedValue;
 
                     result = membersService.createMember(enMember);

@@ -23,21 +23,21 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <asp:LinkButton ID="lnkHome" runat="server" Text="Contact Manager" CssClass="navbar-brand" OnClick="lnkHome_Click"></asp:LinkButton>
+                        <asp:LinkButton ID="lnkHome" runat="server" Text="Contact Manager" CssClass="navbar-brand" CausesValidation="false" OnClick="lnkHome_Click"></asp:LinkButton>
                     </div>
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li><asp:LinkButton id="lnkContacts" runat="server" Text="<%$ Resources:Resource, MisContactos%>" OnClick="lnkContacts_Click"></asp:LinkButton></li>
+                            <li><asp:LinkButton id="lnkContacts" runat="server" Text="<%$ Resources:Resource, MisContactos%>" CausesValidation="false" OnClick="lnkContacts_Click"></asp:LinkButton></li>
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><asp:Label ID="lblDisplayName" runat="server"></asp:Label> <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><asp:LinkButton ID="lnkPreferences" runat="server" Text="<%$ Resources:Resource, Preferencias%>" OnClick="lnkPreferences_Click"></asp:LinkButton></li>
+                                    <li><asp:LinkButton ID="lnkPreferences" runat="server" Text="<%$ Resources:Resource, Preferencias%>" CausesValidation="false" OnClick="lnkPreferences_Click"></asp:LinkButton></li>
                                     <li class="divider"></li>
-                                    <li><asp:LinkButton ID="lnkLogout" runat="server" Text="<%$ Resources:Resource, CerrarSesion%>" OnClick="lnkLogout_Click"></asp:LinkButton></li>
+                                    <li><asp:LinkButton ID="lnkLogout" runat="server" Text="<%$ Resources:Resource, CerrarSesion%>" CausesValidation="false" OnClick="lnkLogout_Click"></asp:LinkButton></li>
                                 </ul>
                             </li>
                         </ul>

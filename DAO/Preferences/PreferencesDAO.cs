@@ -126,7 +126,7 @@ namespace DAO.Preferences
                 sqlSentence += "WHERE members.id = @memberId ";
 
                 sqlParameters = new SqlParameter[2];
-                sqlParameters[0] = new SqlParameter("@password", passwordPreferences.password);
+                sqlParameters[0] = new SqlParameter("@password", passwordPreferences.newPassword);
                 sqlParameters[1] = new SqlParameter("@memberId", memberId);
 
                 dbWrapper.InsertUpdateDelete(sqlSentence, sqlParameters);
@@ -179,15 +179,6 @@ namespace DAO.Preferences
                 enMemberPreferences.email = (string)data.Rows[0]["email"];
 
                 convertedDatatable = enMemberPreferences;
-            }
-            else if (returnType == typeof(PasswordPreferencesDTO))
-            {
-                PasswordPreferencesDTO enPasswordPreferences = new PasswordPreferencesDTO();
-
-                enPasswordPreferences.memberId = (int)data.Rows[0]["id"];
-                enPasswordPreferences.password = (string)data.Rows[0]["password"];
-
-                convertedDatatable = enPasswordPreferences;
             }
             else if (returnType == typeof(LanguagePreferencesDTO))
             {

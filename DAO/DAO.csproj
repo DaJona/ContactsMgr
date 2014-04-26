@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="Contacts\ContactsDAO.cs" />
     <Compile Include="DBWrapper.cs" />
-    <Compile Include="Login\MembersDAO.cs" />
+    <Compile Include="Members\MembersDAO.cs" />
     <Compile Include="Preferences\PreferencesDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

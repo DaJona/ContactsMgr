@@ -1,10 +1,10 @@
 ﻿using DTO.System;
-using Entity.Login;
-using DAO.Login;
+using Entity.Members;
+using DAO.Members;
 using System;
 using Utilities;
 
-namespace Service.Login
+namespace Service.Members
 {
     public class MembersService
     {
@@ -31,8 +31,6 @@ namespace Service.Login
             }
             catch (Exception ex)
             {
-                result.code = TransactionResult.transactionResultCode.Failed;
-                result.failureReason = "ErrorGeneral";
                 throw ex;
             }
 
@@ -65,8 +63,6 @@ namespace Service.Login
             }
             catch (Exception ex)
             {
-                result.code = TransactionResult.transactionResultCode.Failed;
-                result.failureReason = "ErrorGeneral";
                 throw ex;
             }
 

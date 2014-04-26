@@ -1,6 +1,10 @@
-﻿using DAO.Preferences;
+﻿using DAO.Members;
+using DAO.Preferences;
 using DTO.Preferences;
+using DTO.System;
+using Entity.Members;
 using System;
+using Utilities;
 
 namespace Service.Preferences
 {
@@ -76,6 +80,44 @@ namespace Service.Preferences
             {
                 throw ex;
             }
+        }
+
+        public TransactionResult updatePasswordPreferences(PasswordPreferencesDTO passwordPreferences)
+        {
+            TransactionResult result = new TransactionResult();
+
+            try
+            {
+                MembersDAO membersDAO = new MembersDAO();
+                Member enMember = membersDAO.getMember(memberId);
+                string savedPassword = enMember.password;
+                string newPassword = Encoding.getHashedPassword(enMember.email, passwordPreferences.actualPassword);
+
+                // If the saved password is the same than the 'actualPassword' sent, continue update
+                if (savedPassword == newPassword)
+                {
+                    PreferencesDAO preferencesDAO = new PreferencesDAO(memberId);
+
+                    // Overwrite the member new password with more secure one
+                    passwordPreferences.newPassword = Encoding.getHashedPassword(enMember.email, passwordPreferences.newPassword);
+
+                    preferencesDAO.updatePasswordPreferences(passwordPreferences);
+
+                    result.code = TransactionResult.transactionResultCode.Success;
+                }
+                else
+                {
+                    result.code = TransactionResult.transactionResultCode.Failed;
+                    result.failureReason = "ErrorContrasenaActualIncorrecta";
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return result;
         }
     }
 }

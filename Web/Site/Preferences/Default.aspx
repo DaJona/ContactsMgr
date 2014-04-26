@@ -5,7 +5,7 @@
 
     <ul>
         <li><asp:LinkButton ID="lnkAccount" runat="server" Text="<%$ Resources:Resource, InformacionCuenta %>" OnClick="lnkAccount_Click"></asp:LinkButton></li>
-        <li><asp:LinkButton ID="lnkPassword" runat="server" Text="<%$ Resources:Resource, CambiarContrasena %>"></asp:LinkButton></li>
+        <li><asp:LinkButton ID="lnkPassword" runat="server" Text="<%$ Resources:Resource, CambiarContrasena %>" OnClick="lnkPassword_Click"></asp:LinkButton></li>
         <li><asp:LinkButton ID="lnkLanguage" runat="server" Text="<%$ Resources:Resource, PreferenciaIdioma %>"></asp:LinkButton></li>
     </ul>
 </asp:Content>

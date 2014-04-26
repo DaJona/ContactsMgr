@@ -1,10 +1,10 @@
-﻿using Entity.Login;
+﻿using Entity.Members;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace DAO.Login
+namespace DAO.Members
 {
     public class MembersDAO
     {
@@ -15,7 +15,7 @@ namespace DAO.Login
             dbWrapper = new DBWrapper();
         }
 
-        public Member getMember(string memberUser, string memberPassword)
+        public Member getMember(int memberId)
         {
             DataTable dt = new DataTable();
             string sqlSentence = "";
@@ -24,14 +24,10 @@ namespace DAO.Login
             try
             {
                 sqlSentence += "SELECT * FROM members ";
-                sqlSentence += "WHERE members.email = @email ";
-                sqlSentence += "AND members.password = @password ";
-                sqlSentence += "AND members.isActive = @isActive ";
+                sqlSentence += "WHERE members.id = @memberId ";
 
-                sqlParameters = new SqlParameter[3];
-                sqlParameters[0] = new SqlParameter("@email", memberUser);
-                sqlParameters[1] = new SqlParameter("@password", memberPassword);
-                sqlParameters[2] = new SqlParameter("@isActive", true);
+                sqlParameters = new SqlParameter[1];
+                sqlParameters[0] = new SqlParameter("@memberId", memberId);
 
                 dt = dbWrapper.FillDataTable(sqlSentence, sqlParameters);
             }
@@ -56,6 +52,34 @@ namespace DAO.Login
 
                 sqlParameters = new SqlParameter[1];
                 sqlParameters[0] = new SqlParameter("@email", memberEmail);
+
+                dt = dbWrapper.FillDataTable(sqlSentence, sqlParameters);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return (Member)getConvertedDatatable(dt, typeof(Member));
+        }
+
+        public Member getMember(string memberUser, string memberPassword)
+        {
+            DataTable dt = new DataTable();
+            string sqlSentence = "";
+            SqlParameter[] sqlParameters;
+
+            try
+            {
+                sqlSentence += "SELECT * FROM members ";
+                sqlSentence += "WHERE members.email = @email ";
+                sqlSentence += "AND members.password = @password ";
+                sqlSentence += "AND members.isActive = @isActive ";
+
+                sqlParameters = new SqlParameter[3];
+                sqlParameters[0] = new SqlParameter("@email", memberUser);
+                sqlParameters[1] = new SqlParameter("@password", memberPassword);
+                sqlParameters[2] = new SqlParameter("@isActive", true);
 
                 dt = dbWrapper.FillDataTable(sqlSentence, sqlParameters);
             }

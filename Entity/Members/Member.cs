@@ -1,5 +1,5 @@
 ﻿
-namespace Entity.Login
+namespace Entity.Members
 {
     public class Member
     {
