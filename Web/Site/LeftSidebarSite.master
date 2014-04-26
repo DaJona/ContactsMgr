@@ -3,12 +3,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="site" runat="server">
     <style type="text/css">
         #divLeftSidebar {
-            width: 250px;
+            width: 230px;
             display: table-cell;
         }
 
         #divContent {
             display: table-cell;
+            padding-left: 20px;
         }
     </style>
 

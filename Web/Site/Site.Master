@@ -15,6 +15,7 @@
     </head>
     <body>
         <form id="form" runat="server">
+            <!-- Navbar -->
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
                 <div class="container-fluid">
                     <div class="navbar-header">
@@ -44,15 +45,18 @@
                     </div>
                 </div>
             </nav>
+            <!-- Navbar -->
+
+            <!-- Javascripts -->
+            <script type="text/javascript" lang="javascript" src="<%= ResolveUrl("~/js/jquery-1.7.2.js")%>"></script>
+            <script type="text/javascript" lang="javascript" src="<%= ResolveUrl("~/js/bootstrap.js")%>"></script>
+            <!-- Javascripts -->
 
             <div id="mainContainer">
                 <asp:ContentPlaceHolder ID="site" runat="server"></asp:ContentPlaceHolder>
             </div>
 
             <wuc:Footer ID="Footer" runat="server" />
-
-            <script type="text/javascript" lang="javascript" src="<%= ResolveUrl("~/js/jquery-1.7.2.js")%>"></script>
-            <script type="text/javascript" lang="javascript" src="<%= ResolveUrl("~/js/bootstrap.js")%>"></script>
         </form>
     </body>
 </html>

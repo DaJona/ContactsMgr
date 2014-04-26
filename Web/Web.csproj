@@ -78,7 +78,6 @@
     <Content Include="Site\Preferences\Account.aspx" />
     <Content Include="Site\Preferences\Default.aspx" />
     <Content Include="Site\Preferences\Password.aspx" />
-    <Content Include="Site\Preferences\Side.aspx" />
     <Content Include="Site\Site.Master" />
     <Content Include="Site\LeftSidebarSite.master" />
     <None Include="Web.Debug.config">
@@ -95,6 +94,7 @@
     <Content Include="Site\WUC\InfoMessage.ascx" />
     <Content Include="Site\WUC\LanguagesList.ascx" />
     <Content Include="Site\WUC\NoData.ascx" />
+    <Content Include="Site\WUC\PreferencesLeftSidebar.ascx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -176,13 +176,6 @@
     <Compile Include="Site\Preferences\Password.aspx.designer.cs">
       <DependentUpon>Password.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Site\Preferences\Side.aspx.cs">
-      <DependentUpon>Side.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Site\Preferences\Side.aspx.designer.cs">
-      <DependentUpon>Side.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Site\Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -217,6 +210,13 @@
     </Compile>
     <Compile Include="Site\WUC\NoData.ascx.designer.cs">
       <DependentUpon>NoData.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Site\WUC\PreferencesLeftSidebar.ascx.cs">
+      <DependentUpon>PreferencesLeftSidebar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site\WUC\PreferencesLeftSidebar.ascx.designer.cs">
+      <DependentUpon>PreferencesLeftSidebar.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

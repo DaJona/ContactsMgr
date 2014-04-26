@@ -13,30 +13,12 @@ namespace Web.Site.Preferences {
     public partial class Default {
         
         /// <summary>
-        /// lnkAccount control.
+        /// preferencesLeftSidebar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkAccount;
-        
-        /// <summary>
-        /// lnkPassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkPassword;
-        
-        /// <summary>
-        /// lnkLanguage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkLanguage;
+        protected global::Web.Site.WUC.PreferencesLeftSidebar preferencesLeftSidebar;
     }
 }

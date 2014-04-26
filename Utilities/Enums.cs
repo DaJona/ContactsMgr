@@ -10,5 +10,12 @@ namespace Utilities
             Success = 2,
             Error = 3
         }
+
+        public enum preferencesMenuItems
+        {
+            Member = 0,
+            Password = 1,
+            Language = 2
+        }
     }
 }

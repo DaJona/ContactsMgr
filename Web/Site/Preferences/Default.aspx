@@ -1,11 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Web.Site.Preferences.Default" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site/LeftSidebarSite.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Web.Site.Preferences.Default" %>
+<%@ Register Src="~/Site/WUC/PreferencesLeftSidebar.ascx" TagName="PreferencesLeftSidebar" TagPrefix="wuc" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="site" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="leftSidebar" runat="server">
+    <wuc:PreferencesLeftSidebar ID="preferencesLeftSidebar" runat="server" />
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="content" runat="server">
     <h1><asp:Literal runat="server" Text="<%$ Resources:Resource, Preferencias %>"></asp:Literal></h1>
-
-    <ul>
-        <li><asp:LinkButton ID="lnkAccount" runat="server" Text="<%$ Resources:Resource, InformacionCuenta %>" OnClick="lnkAccount_Click"></asp:LinkButton></li>
-        <li><asp:LinkButton ID="lnkPassword" runat="server" Text="<%$ Resources:Resource, CambiarContrasena %>" OnClick="lnkPassword_Click"></asp:LinkButton></li>
-        <li><asp:LinkButton ID="lnkLanguage" runat="server" Text="<%$ Resources:Resource, PreferenciaIdioma %>"></asp:LinkButton></li>
-    </ul>
 </asp:Content>

@@ -231,6 +231,9 @@
   <data name="IniciarSesion" xml:space="preserve">
     <value>Iniciar Sesión</value>
   </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menú</value>
+  </data>
   <data name="MisContactos" xml:space="preserve">
     <value>Mis Contactos</value>
   </data>

@@ -9,15 +9,5 @@ namespace Web.Site.Preferences
         {
 
         }
-
-        protected void lnkAccount_Click(object sender, EventArgs e)
-        {
-            Response.Redirect(Pages.getPreferencesAccount().ToString(), true);
-        }
-
-        protected void lnkPassword_Click(object sender, EventArgs e)
-        {
-            Response.Redirect(Pages.getPreferencesPassword().ToString(), true);
-        }
     }
 }
