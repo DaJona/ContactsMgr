@@ -6,5 +6,6 @@ namespace Utilities
         public const string memberId = "CMUsrId";
         public const string memberName = "CMUsrName";
         public const string memberLang = "CMUsrLang";
+        public const string memberTimeZoneMinsOffset = "CMUsrTimeZoneMinsOffset";
     }
 }

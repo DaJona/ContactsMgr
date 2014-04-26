@@ -30,12 +30,20 @@
             </div>
             
             <div class="btnContainer">
-                <wsc:CMButton ID="btnLogin" runat="server" Text="<%$ Resources:Resource, IniciarSesion %>" CssClass="btn-lg" OnClick="btnLogin_Click" />
+                <wsc:CMButton ID="btnLogin" runat="server" Text="<%$ Resources:Resource, IniciarSesion %>" CssClass="btn-lg" OnClientClick="javascript:pepe();" OnClick="btnLogin_Click" />
                 <wsc:CMCustomValidator  ID="cvLogin" runat="server" />
             </div>
+
+            <input id="timeZoneOffset" runat="server" type="hidden" />
         </form>
 
         <script type="text/javascript" lang="javascript" src="<%= ResolveUrl("~/js/jquery-1.7.2.js")%>"></script>
         <script type="text/javascript" lang="javascript" src="<%= ResolveUrl("~/js/bootstrap.js")%>"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                // Save the client timezone minutes offset
+                $("#<%= timeZoneOffset.ClientID%>").val(new Date().getTimezoneOffset());
+            });
+        </script>
     </body>
 </html>

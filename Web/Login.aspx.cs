@@ -23,6 +23,22 @@ namespace Web
             txtEmail.Focus();
         }
 
+        #region Properties
+
+        protected string timeZone
+        {
+            set
+            {
+                timeZoneOffset.Value = value;
+            }
+            get
+            {
+                return timeZoneOffset.Value;
+            }
+        }
+
+        #endregion
+
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
@@ -40,6 +56,7 @@ namespace Web
                         Session[CMSession.memberId] = logedMember.id;
                         Session[CMSession.memberName] = logedMember.displayName;
                         Session[CMSession.memberLang] = logedMember.language;
+                        Session[CMSession.memberTimeZoneMinsOffset] = timeZoneOffset.Value;
 
                         if (Request.QueryString[Parameters.redirectTo] != null)
                             Response.Redirect(Request.QueryString[Parameters.redirectTo].ToString(), true);
