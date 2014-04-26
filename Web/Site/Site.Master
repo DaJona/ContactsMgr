@@ -45,8 +45,9 @@
                 </div>
             </nav>
 
-            <asp:ContentPlaceHolder ID="site" runat="server">        
-            </asp:ContentPlaceHolder>
+            <div id="mainContainer">
+                <asp:ContentPlaceHolder ID="site" runat="server"></asp:ContentPlaceHolder>
+            </div>
 
             <wuc:Footer ID="Footer" runat="server" />
 

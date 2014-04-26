@@ -2,6 +2,11 @@
     margin: 75px 20px 0 20px;
 }
 
+#mainContainer {
+    display: table;
+    width: 100%;
+}
+
 div.btnContainer {
 	width: 90%;
 	margin: 5px auto;

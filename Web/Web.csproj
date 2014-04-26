@@ -78,7 +78,9 @@
     <Content Include="Site\Preferences\Account.aspx" />
     <Content Include="Site\Preferences\Default.aspx" />
     <Content Include="Site\Preferences\Password.aspx" />
+    <Content Include="Site\Preferences\Side.aspx" />
     <Content Include="Site\Site.Master" />
+    <Content Include="Site\LeftSidebarSite.master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -146,6 +148,13 @@
     <Compile Include="Site\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Site\LeftSidebarSite.master.cs">
+      <DependentUpon>LeftSidebarSite.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site\LeftSidebarSite.master.designer.cs">
+      <DependentUpon>LeftSidebarSite.master</DependentUpon>
+    </Compile>
     <Compile Include="Site\Preferences\Account.aspx.cs">
       <DependentUpon>Account.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -166,6 +175,13 @@
     </Compile>
     <Compile Include="Site\Preferences\Password.aspx.designer.cs">
       <DependentUpon>Password.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Site\Preferences\Side.aspx.cs">
+      <DependentUpon>Side.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site\Preferences\Side.aspx.designer.cs">
+      <DependentUpon>Side.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site\Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
