@@ -76,10 +76,10 @@ namespace DAO.Contacts
 
             try
             {
-                sqlSentence += "INSERT INTO contacts (memberId, firstName, lastName, email, mobileNumber, landlineNumber, isActive) ";
-                sqlSentence += "VALUES (@memberId, @firstName, @lastName, @email, @mobileNumber, @landlineNumber, @isActive) ";
+                sqlSentence += "INSERT INTO contacts (memberId, firstName, lastName, email, mobileNumber, landlineNumber, isActive, createdAt) ";
+                sqlSentence += "VALUES (@memberId, @firstName, @lastName, @email, @mobileNumber, @landlineNumber, @isActive, @createdAt) ";
 
-                sqlParameters = new SqlParameter[7];
+                sqlParameters = new SqlParameter[8];
                 sqlParameters[0] = new SqlParameter("@memberId", memberInfo.id);
                 sqlParameters[1] = new SqlParameter("@firstName", enContact.firstName);
                 sqlParameters[2] = new SqlParameter("@lastName", enContact.lastName);
@@ -87,6 +87,7 @@ namespace DAO.Contacts
                 sqlParameters[4] = new SqlParameter("@mobileNumber", enContact.mobileNumber);
                 sqlParameters[5] = new SqlParameter("@landlineNumber", enContact.landlineNumber);
                 sqlParameters[6] = new SqlParameter("@isActive", true);
+                sqlParameters[7] = new SqlParameter("@createdAt", DateTime.Now.ToUniversalTime().ToString("yyyyMMdd HH:mm:ss"));
 
                 dbWrapper.InsertUpdateDelete(sqlSentence, sqlParameters);
             }
@@ -200,6 +201,7 @@ namespace DAO.Contacts
                 enContact.mobileNumber = (string)data.Rows[0]["mobileNumber"];
                 enContact.landlineNumber = (string)data.Rows[0]["landlineNumber"];
                 enContact.isActive = (bool)data.Rows[0]["isActive"];
+                enContact.createdAt = (DateTime)data.Rows[0]["createdAt"];
 
                 convertedDatatable = enContact;
             }
@@ -220,6 +222,7 @@ namespace DAO.Contacts
                     enContact.mobileNumber = data.Rows[index]["mobileNumber"] is DBNull ? string.Empty : (string)data.Rows[index]["mobileNumber"];
                     enContact.landlineNumber = data.Rows[index]["landlineNumber"] is DBNull ? string.Empty : (string)data.Rows[index]["landlineNumber"];
                     enContact.isActive = (bool)data.Rows[index]["isActive"];
+                    enContact.createdAt = (DateTime)data.Rows[index]["createdAt"];
 
                     listContacts.Add(enContact);
                 }

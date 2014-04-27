@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace Entity.Members
 {
     public class Member
@@ -10,5 +11,6 @@ namespace Entity.Members
         public string password { get; set; }
         public string language { get; set; }
         public bool isActive { get; set; }
+        public DateTime createdAt { get; set; }
     }
 }

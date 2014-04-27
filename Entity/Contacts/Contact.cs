@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace Entity.Contacts
 {
     public class Contact
@@ -11,5 +12,6 @@ namespace Entity.Contacts
         public string mobileNumber { get; set; }
         public string landlineNumber { get; set; }
         public bool isActive { get; set; }
+        public DateTime createdAt { get; set; }
     }
 }

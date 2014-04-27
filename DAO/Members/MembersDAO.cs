@@ -99,16 +99,17 @@ namespace DAO.Members
 
             try
             {
-                sqlSentence += "INSERT INTO members (realName, displayName, email, password, language, isActive) ";
-                sqlSentence += "VALUES (@realName, @displayName, @email, @password, @language, @isActive) ";
+                sqlSentence += "INSERT INTO members (realName, displayName, email, password, language, isActive, createdAt) ";
+                sqlSentence += "VALUES (@realName, @displayName, @email, @password, @language, @isActive, @createdAt) ";
 
-                sqlParameters = new SqlParameter[6];
+                sqlParameters = new SqlParameter[7];
                 sqlParameters[0] = new SqlParameter("@realName", enMember.realName);
                 sqlParameters[1] = new SqlParameter("@displayName", enMember.displayName);
                 sqlParameters[2] = new SqlParameter("@email", enMember.email);
                 sqlParameters[3] = new SqlParameter("@password", enMember.password);
                 sqlParameters[4] = new SqlParameter("@language", enMember.language);
                 sqlParameters[5] = new SqlParameter("@isActive", true);
+                sqlParameters[6] = new SqlParameter("@createdAt", DateTime.Now.ToUniversalTime().ToString("yyyyMMdd HH:mm:ss"));
 
                 dbWrapper.InsertUpdateDelete(sqlSentence, sqlParameters);
             }
@@ -138,6 +139,7 @@ namespace DAO.Members
                 enMember.password = (string)data.Rows[0]["password"];
                 enMember.language = (string)data.Rows[0]["language"];
                 enMember.isActive = (bool)data.Rows[0]["isActive"];
+                enMember.createdAt = (DateTime)data.Rows[0]["createdAt"];
 
                 convertedDatatable = enMember;
             }
@@ -157,6 +159,7 @@ namespace DAO.Members
                     enMember.password = (string)data.Rows[index]["password"];
                     enMember.language = (string)data.Rows[index]["language"];
                     enMember.isActive = (bool)data.Rows[index]["isActive"];
+                    enMember.createdAt = (DateTime)data.Rows[index]["createdAt"];
 
                     listMembers.Add(enMember);
                 }
