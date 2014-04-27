@@ -99,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="SessionManager.cs" />
     <Compile Include="CreateAccount.aspx.cs">
       <DependentUpon>CreateAccount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -1,4 +1,5 @@
-﻿using Entity.Contacts;
+﻿using DTO.System;
+using Entity.Contacts;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,12 +10,12 @@ namespace DAO.Contacts
     public class ContactsDAO
     {
         private DBWrapper dbWrapper;
-        private int memberId;
+        private SessionMemberInfo memberInfo;
 
-        public ContactsDAO(int sessionMemberId)
+        public ContactsDAO(SessionMemberInfo sessionMemberInfo)
         {
             dbWrapper = new DBWrapper();
-            memberId = sessionMemberId;
+            memberInfo = sessionMemberInfo;
         }
 
         public List<Contact> getContacts()
@@ -30,7 +31,7 @@ namespace DAO.Contacts
                 sqlSentence += "ORDER BY contacts.firstName, contacts.lastName ";
 
                 sqlParameters = new SqlParameter[1];
-                sqlParameters[0] = new SqlParameter("@memberId", memberId);
+                sqlParameters[0] = new SqlParameter("@memberId", memberInfo.id);
 
                 dt = dbWrapper.FillDataTable(sqlSentence, sqlParameters);
             }
@@ -55,7 +56,7 @@ namespace DAO.Contacts
                 sqlSentence += "AND contacts.id = @contactId ";
 
                 sqlParameters = new SqlParameter[2];
-                sqlParameters[0] = new SqlParameter("@memberId", memberId);
+                sqlParameters[0] = new SqlParameter("@memberId", memberInfo.id);
                 sqlParameters[1] = new SqlParameter("@contactId", contactId);
 
                 dt = dbWrapper.FillDataTable(sqlSentence, sqlParameters);
@@ -79,7 +80,7 @@ namespace DAO.Contacts
                 sqlSentence += "VALUES (@memberId, @firstName, @lastName, @email, @mobileNumber, @landlineNumber, @isActive) ";
 
                 sqlParameters = new SqlParameter[7];
-                sqlParameters[0] = new SqlParameter("@memberId", memberId);
+                sqlParameters[0] = new SqlParameter("@memberId", memberInfo.id);
                 sqlParameters[1] = new SqlParameter("@firstName", enContact.firstName);
                 sqlParameters[2] = new SqlParameter("@lastName", enContact.lastName);
                 sqlParameters[3] = new SqlParameter("@email", enContact.email);
@@ -117,7 +118,7 @@ namespace DAO.Contacts
                 sqlParameters[2] = new SqlParameter("@email", enContact.email);
                 sqlParameters[3] = new SqlParameter("@mobileNumber", enContact.mobileNumber);
                 sqlParameters[4] = new SqlParameter("@landlineNumber", enContact.landlineNumber);
-                sqlParameters[5] = new SqlParameter("@memberId", memberId);
+                sqlParameters[5] = new SqlParameter("@memberId", memberInfo.id);
                 sqlParameters[6] = new SqlParameter("@contactId", enContact.id);
 
                 dbWrapper.InsertUpdateDelete(sqlSentence, sqlParameters);
@@ -142,7 +143,7 @@ namespace DAO.Contacts
 
                 sqlParameters = new SqlParameter[3];
                 sqlParameters[0] = new SqlParameter("@isActive", false);
-                sqlParameters[1] = new SqlParameter("@memberId", memberId);
+                sqlParameters[1] = new SqlParameter("@memberId", memberInfo.id);
                 sqlParameters[2] = new SqlParameter("@contactId", contactId);
 
                 dbWrapper.InsertUpdateDelete(sqlSentence, sqlParameters);
@@ -167,7 +168,7 @@ namespace DAO.Contacts
 
                 sqlParameters = new SqlParameter[3];
                 sqlParameters[0] = new SqlParameter("@isActive", true);
-                sqlParameters[1] = new SqlParameter("@memberId", memberId);
+                sqlParameters[1] = new SqlParameter("@memberId", memberInfo.id);
                 sqlParameters[2] = new SqlParameter("@contactId", contactId);
 
                 dbWrapper.InsertUpdateDelete(sqlSentence, sqlParameters);

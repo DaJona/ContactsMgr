@@ -8,10 +8,10 @@ namespace Web.Site
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session[CMSession.memberId] == null)
+            if (!SessionManager.hasActiveSession)
                 Response.Redirect(Pages.getLogin() + "?RedirectTo=" + HttpUtility.HtmlEncode(Request.Url.ToString()), true);
 
-            lblDisplayName.Text = Session[CMSession.memberName].ToString();
+            lblDisplayName.Text = SessionManager.sessionMemberInfo.name;
         }
 
         protected void lnkLogout_Click(object sender, EventArgs e)

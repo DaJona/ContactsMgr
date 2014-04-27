@@ -10,13 +10,13 @@ namespace Service.Preferences
 {
     public class PreferencesService
     {
-        private int memberId;
+        private SessionMemberInfo memberInfo;
         private PreferencesDAO preferencesDAO;
 
-        public PreferencesService(int sessionMemberId)
+        public PreferencesService(SessionMemberInfo sessionMemberInfo)
         {
-            memberId = sessionMemberId;
-            preferencesDAO = new PreferencesDAO(memberId);
+            preferencesDAO = new PreferencesDAO(sessionMemberInfo);
+            memberInfo = sessionMemberInfo;
         }
 
         public MemberPreferencesDTO getMemberPreferences()
@@ -89,14 +89,14 @@ namespace Service.Preferences
             try
             {
                 MembersDAO membersDAO = new MembersDAO();
-                Member enMember = membersDAO.getMember(memberId);
+                Member enMember = membersDAO.getMember(memberInfo.id);
                 string savedPassword = enMember.password;
                 string newPassword = Encoding.getHashedPassword(enMember.email, passwordPreferences.actualPassword);
 
                 // If the saved password is the same than the 'actualPassword' sent, continue update
                 if (savedPassword == newPassword)
                 {
-                    PreferencesDAO preferencesDAO = new PreferencesDAO(memberId);
+                    PreferencesDAO preferencesDAO = new PreferencesDAO(memberInfo);
 
                     // Overwrite the member new password with more secure one
                     passwordPreferences.newPassword = Encoding.getHashedPassword(enMember.email, passwordPreferences.newPassword);

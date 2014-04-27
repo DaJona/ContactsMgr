@@ -23,7 +23,7 @@ namespace Web.Site.Contacts
         {
             try
             {
-                ContactsService contactsService = new ContactsService((int)Session[CMSession.memberId]);
+                ContactsService contactsService = new ContactsService(SessionManager.sessionMemberInfo);
                 List<Contact> listContacts;
 
                 listContacts = contactsService.getContacts();
@@ -73,7 +73,7 @@ namespace Web.Site.Contacts
         {
             try
             {
-                ContactsService contactsService = new ContactsService((int)Session[CMSession.memberId]);
+                ContactsService contactsService = new ContactsService(SessionManager.sessionMemberInfo);
                 int contactId = Convert.ToInt32(e.CommandArgument);
 
                 switch (e.CommandName)

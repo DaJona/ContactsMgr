@@ -8,13 +8,19 @@ namespace Service.Members
 {
     public class MembersService
     {
+        private MembersDAO membersDao;
+
+        public MembersService()
+        {
+            membersDao = new MembersDAO();
+        }
+
         public TransactionResult login(string memberUser, string memberPassword)
         {
             TransactionResult result = new TransactionResult();
 
             try
             {
-                MembersDAO membersDao = new MembersDAO();
                 Member member;
                 member = membersDao.getMember(memberUser, Encoding.getHashedPassword(memberUser, memberPassword));
 
@@ -43,8 +49,6 @@ namespace Service.Members
 
             try
             {
-                MembersDAO membersDao = new MembersDAO();
-
                 // The member email must be unique
                 Member existingMember = membersDao.getMember(enMember.email);
                 if (existingMember != null)

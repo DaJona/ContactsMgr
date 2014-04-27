@@ -43,6 +43,7 @@
     <Compile Include="Preferences\MemberPreferencesDTO.cs" />
     <Compile Include="Preferences\PasswordPreferencesDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\SessionMemberInfo.cs" />
     <Compile Include="System\TransactionResult.cs" />
   </ItemGroup>
   <ItemGroup />

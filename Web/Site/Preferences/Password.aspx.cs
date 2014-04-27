@@ -39,11 +39,11 @@ namespace Web.Site.Preferences
         {
             try
             {
-                PreferencesService preferencesService = new PreferencesService((int)Session[CMSession.memberId]);
+                PreferencesService preferencesService = new PreferencesService(SessionManager.sessionMemberInfo);
                 PasswordPreferencesDTO passwordPreferences = new PasswordPreferencesDTO();
                 TransactionResult result;
 
-                passwordPreferences.memberId = (int)Session[CMSession.memberId];
+                passwordPreferences.memberId = SessionManager.sessionMemberInfo.id;
                 passwordPreferences.actualPassword = txtActualPass.Text;
                 passwordPreferences.newPassword = txtNewPass.Text;
 

@@ -32,7 +32,7 @@ namespace Web.Site.Contacts
         {
             try
             {
-                ContactsService contactsService = new ContactsService((int)Session[CMSession.memberId]);
+                ContactsService contactsService = new ContactsService(SessionManager.sessionMemberInfo);
                 Contact existingContact = contactsService.getContact(conctactId);
 
                 txtFirstName.Text = existingContact.firstName;
@@ -51,7 +51,7 @@ namespace Web.Site.Contacts
         {
             try
             {
-                ContactsService contactsService = new ContactsService((int)Session[CMSession.memberId]);
+                ContactsService contactsService = new ContactsService(SessionManager.sessionMemberInfo);
                 Contact editedContact = new Contact();
                 TransactionResult result;
 

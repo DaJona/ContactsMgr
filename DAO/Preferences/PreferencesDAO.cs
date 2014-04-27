@@ -1,4 +1,5 @@
 ﻿using DTO.Preferences;
+using DTO.System;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,12 +10,12 @@ namespace DAO.Preferences
     public class PreferencesDAO
     {
         private DBWrapper dbWrapper;
-        private int memberId;
+        private SessionMemberInfo memberInfo;
 
-        public PreferencesDAO(int sessionMemberId)
+        public PreferencesDAO(SessionMemberInfo sessionMemberInfo)
         {
             dbWrapper = new DBWrapper();
-            memberId = sessionMemberId;
+            memberInfo = sessionMemberInfo;
         }
 
         public MemberPreferencesDTO getMemberPreferences()
@@ -29,7 +30,7 @@ namespace DAO.Preferences
                 sqlSentence += "WHERE members.id = @memberId ";
 
                 sqlParameters = new SqlParameter[1];
-                sqlParameters[0] = new SqlParameter("@memberId", memberId);
+                sqlParameters[0] = new SqlParameter("@memberId", memberInfo.id);
 
                 dt = dbWrapper.FillDataTable(sqlSentence, sqlParameters);
             }
@@ -53,7 +54,7 @@ namespace DAO.Preferences
                 sqlSentence += "WHERE members.id = @memberId ";
 
                 sqlParameters = new SqlParameter[1];
-                sqlParameters[0] = new SqlParameter("@memberId", memberId);
+                sqlParameters[0] = new SqlParameter("@memberId", memberInfo.id);
 
                 dt = dbWrapper.FillDataTable(sqlSentence, sqlParameters);
             }
@@ -77,7 +78,7 @@ namespace DAO.Preferences
                 sqlSentence += "WHERE members.id = @memberId ";
 
                 sqlParameters = new SqlParameter[1];
-                sqlParameters[0] = new SqlParameter("@memberId", memberId);
+                sqlParameters[0] = new SqlParameter("@memberId", memberInfo.id);
 
                 dt = dbWrapper.FillDataTable(sqlSentence, sqlParameters);
             }
@@ -104,7 +105,7 @@ namespace DAO.Preferences
                 sqlParameters = new SqlParameter[3];
                 sqlParameters[0] = new SqlParameter("@realName", memberPreferences.realName);
                 sqlParameters[1] = new SqlParameter("@displayName", memberPreferences.displayName);
-                sqlParameters[2] = new SqlParameter("@memberId", memberId);
+                sqlParameters[2] = new SqlParameter("@memberId", memberInfo.id);
 
                 dbWrapper.InsertUpdateDelete(sqlSentence, sqlParameters);
             }
@@ -127,7 +128,7 @@ namespace DAO.Preferences
 
                 sqlParameters = new SqlParameter[2];
                 sqlParameters[0] = new SqlParameter("@password", passwordPreferences.newPassword);
-                sqlParameters[1] = new SqlParameter("@memberId", memberId);
+                sqlParameters[1] = new SqlParameter("@memberId", memberInfo.id);
 
                 dbWrapper.InsertUpdateDelete(sqlSentence, sqlParameters);
             }
@@ -150,7 +151,7 @@ namespace DAO.Preferences
 
                 sqlParameters = new SqlParameter[2];
                 sqlParameters[0] = new SqlParameter("@language", languagePreferences.language);
-                sqlParameters[1] = new SqlParameter("@memberId", memberId);
+                sqlParameters[1] = new SqlParameter("@memberId", memberInfo.id);
 
                 dbWrapper.InsertUpdateDelete(sqlSentence, sqlParameters);
             }

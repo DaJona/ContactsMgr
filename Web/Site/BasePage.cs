@@ -10,8 +10,8 @@ namespace Web.Site
         {
             string lang = "es-es";
 
-            if (Session[CMSession.memberLang] != null)
-                lang = Session[CMSession.memberLang].ToString();
+            if (SessionManager.sessionMemberInfo.lang != string.Empty)
+                lang = SessionManager.sessionMemberInfo.lang;
 
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(lang);

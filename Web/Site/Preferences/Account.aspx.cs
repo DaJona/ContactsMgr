@@ -20,7 +20,7 @@ namespace Web.Site.Preferences
         {
             try
             {
-                PreferencesService preferencesService = new PreferencesService((int)Session[CMSession.memberId]);
+                PreferencesService preferencesService = new PreferencesService(SessionManager.sessionMemberInfo);
                 MemberPreferencesDTO memberPreferences = preferencesService.getMemberPreferences();
 
                 if (memberPreferences != null)
@@ -50,10 +50,10 @@ namespace Web.Site.Preferences
         {
             try
             {
-                PreferencesService preferencesService = new PreferencesService((int)Session[CMSession.memberId]);
+                PreferencesService preferencesService = new PreferencesService(SessionManager.sessionMemberInfo);
                 MemberPreferencesDTO enMemberPreferences = new MemberPreferencesDTO();
 
-                enMemberPreferences.memberId = (int)Session[CMSession.memberId];
+                enMemberPreferences.memberId = SessionManager.sessionMemberInfo.id;
                 enMemberPreferences.realName = txtRealName.Text;
                 enMemberPreferences.displayName = txtDisplayName.Text;
 

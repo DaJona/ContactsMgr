@@ -8,13 +8,13 @@ namespace Service.Contacts
 {
     public class ContactsService
     {
-        private int memberId;
+        private SessionMemberInfo memberInfo;
         private ContactsDAO contactsDAO;
 
-        public ContactsService(int sessionMemberId)
+        public ContactsService(SessionMemberInfo sessionMemberInfo)
         {
-            memberId = sessionMemberId;
-            contactsDAO = new ContactsDAO(memberId);
+            contactsDAO = new ContactsDAO(sessionMemberInfo);
+            memberInfo = sessionMemberInfo;
         }
 
         public List<Contact> getContacts()

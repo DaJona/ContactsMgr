@@ -39,7 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CMSession.cs" />
     <Compile Include="Encoding.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Pages.cs" />

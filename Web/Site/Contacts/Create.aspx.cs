@@ -22,7 +22,7 @@ namespace Web.Site.Contacts
         {
             try
             {
-                ContactsService contactsService = new ContactsService((int)Session[CMSession.memberId]);
+                ContactsService contactsService = new ContactsService(SessionManager.sessionMemberInfo);
                 Contact newContact = new Contact();
                 TransactionResult result;
 

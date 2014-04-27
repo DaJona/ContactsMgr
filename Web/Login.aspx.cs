@@ -12,7 +12,7 @@ namespace Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session[CMSession.memberId] != null)
+            if (SessionManager.hasActiveSession)
             {
                 if (Request.QueryString[Parameters.redirectTo] != null)
                     Response.Redirect(Request.QueryString[Parameters.redirectTo].ToString(), true);
@@ -52,11 +52,7 @@ namespace Web
                     if (result.code == TransactionResult.transactionResultCode.Success)
                     {
                         Member logedMember = (Member)result.object1;
-
-                        Session[CMSession.memberId] = logedMember.id;
-                        Session[CMSession.memberName] = logedMember.displayName;
-                        Session[CMSession.memberLang] = logedMember.language;
-                        Session[CMSession.memberTimeZoneMinsOffset] = timeZoneOffset.Value;
+                        SessionManager.create(logedMember.id, logedMember.displayName, logedMember.language, Convert.ToInt32(timeZoneOffset.Value));
 
                         if (Request.QueryString[Parameters.redirectTo] != null)
                             Response.Redirect(Request.QueryString[Parameters.redirectTo].ToString(), true);
