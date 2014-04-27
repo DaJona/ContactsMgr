@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Encoding.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="Formatting.cs" />
     <Compile Include="Pages.cs" />
     <Compile Include="Parameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
