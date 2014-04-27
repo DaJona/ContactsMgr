@@ -47,7 +47,7 @@
             </div>
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="ddlLanguage" Text="<%$ Resources:Resource, Idioma %>"></asp:Label>
-                <wuc:LanguagesList ID="ddlLanguage" runat="server" />
+                <wuc:LanguagesList ID="ddlLanguage" runat="server" CssClass="form-control" />
             </div>
 
             <div class="btnContainer">

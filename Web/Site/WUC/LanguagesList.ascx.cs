@@ -19,5 +19,11 @@ namespace Web.Site.WUC
             get { return ddlLanguages.SelectedValue; }
             set { ddlLanguages.SelectedValue = value; }
         }
+
+        public string CssClass
+        {
+            get { return ddlLanguages.CssClass; }
+            set { ddlLanguages.CssClass = value; }
+        }
     }
 }
