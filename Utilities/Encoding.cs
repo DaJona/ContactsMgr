@@ -6,15 +6,22 @@ namespace Utilities
 {
     public class Encoding
     {
-        public static string getHashedPassword(string memberUser, string memberPassword)
+        public static string sha1(string feed1, string feed2 = "")
         {
-            string feed = "7f9facc418f74439c5e9709832;0ab8a5:OCOdN5Wl,q8SLIQz8i|8agmu¬s13Q7ZXyno/";
-            SHA512 sha512 = new SHA512CryptoServiceProvider();
+            SHA1 sha1 = new SHA1CryptoServiceProvider();
+            byte[] inputBytes = (new UnicodeEncoding()).GetBytes(feed1 + feed2);
+            byte[] hash = sha1.ComputeHash(inputBytes);
 
-            byte[] inputBytes = (new UnicodeEncoding()).GetBytes(memberUser + memberPassword + feed);
+            return Convert.ToBase64String(hash).Replace("/", "a").Replace("\\", "b");
+        }
+
+        public static string sha512(string feed1, string feed2 = "")
+        {
+            SHA512 sha512 = new SHA512CryptoServiceProvider();            
+            byte[] inputBytes = (new UnicodeEncoding()).GetBytes(feed1 + feed2);
             byte[] hash = sha512.ComputeHash(inputBytes);
 
-            return Convert.ToBase64String(hash);
+            return Convert.ToBase64String(hash).Replace("/", "a").Replace("\\", "b");
         }
     }
 }

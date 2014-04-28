@@ -107,7 +107,7 @@ namespace DAO.Preferences
                 sqlParameters[1] = new SqlParameter("@displayName", memberPreferences.displayName);
                 sqlParameters[2] = new SqlParameter("@memberId", memberInfo.id);
 
-                dbWrapper.InsertUpdateDelete(sqlSentence, sqlParameters);
+                dbWrapper.UpdateDelete(sqlSentence, sqlParameters);
             }
             catch (Exception ex)
             {
@@ -130,7 +130,7 @@ namespace DAO.Preferences
                 sqlParameters[0] = new SqlParameter("@password", passwordPreferences.newPassword);
                 sqlParameters[1] = new SqlParameter("@memberId", memberInfo.id);
 
-                dbWrapper.InsertUpdateDelete(sqlSentence, sqlParameters);
+                dbWrapper.UpdateDelete(sqlSentence, sqlParameters);
             }
             catch (Exception ex)
             {
@@ -153,7 +153,7 @@ namespace DAO.Preferences
                 sqlParameters[0] = new SqlParameter("@language", languagePreferences.language);
                 sqlParameters[1] = new SqlParameter("@memberId", memberInfo.id);
 
-                dbWrapper.InsertUpdateDelete(sqlSentence, sqlParameters);
+                dbWrapper.UpdateDelete(sqlSentence, sqlParameters);
             }
             catch (Exception ex)
             {

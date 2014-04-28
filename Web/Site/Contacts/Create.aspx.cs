@@ -26,16 +26,48 @@ namespace Web.Site.Contacts
                 Contact newContact = new Contact();
                 TransactionResult result;
 
+                // Variables to manage the contact pic file
+                string fileExtension = "";
+                int fileSizeInBytes = 0;
+
+                if (uplContactPic.HasFile)
+                {
+                    fileExtension = System.IO.Path.GetExtension(uplContactPic.FileName);
+                    fileSizeInBytes = uplContactPic.PostedFile.ContentLength;
+
+                    if (!FilesValidations.isValidContactPic(fileExtension, fileSizeInBytes))
+                    {
+                        showError(HttpContext.GetGlobalResourceObject("Resource", "ErrorFotoContactoInvalida").ToString());
+                        return;
+                    }
+                }
+
                 newContact.firstName = txtFirstName.Text;
                 newContact.lastName = txtLastName.Text;
                 newContact.email = txtEmail.Text;
                 newContact.mobileNumber = txtMobileNumber.Text;
                 newContact.landlineNumber = txtLandlineNumber.Text;
-
+                newContact.picExtension = fileExtension;
+                
                 result = contactsService.createContact(newContact);
                 if (result.code == TransactionResult.transactionResultCode.Success)
                 {
-                    Response.Redirect(Pages.getContactsDefault(), true);
+                    int createdContactId = result.affectedId;
+
+                    try
+                    {
+                        if (uplContactPic.HasFile)
+                        {
+                            uplContactPic.SaveAs(Server.MapPath(SitePaths.contactsPics(SessionManager.sessionMemberInfo.id) + Encoding.sha1(createdContactId.ToString()) + fileExtension));
+                        }
+
+                        Response.Redirect(Pages.getContactsDefault(), false);
+                    }
+                    catch (Exception)
+                    {
+                        contactsService.deleteContact(createdContactId);
+                        showError(HttpContext.GetGlobalResourceObject("Resource", "ErrorGeneral").ToString());
+                    }
                 }
                 else
                 {
@@ -45,8 +77,7 @@ namespace Web.Site.Contacts
             catch (Exception)
             {
                 showError(HttpContext.GetGlobalResourceObject("Resource", "ErrorGeneral").ToString());
-            }
-            
+            }            
         }
 
         private void showError(string message)

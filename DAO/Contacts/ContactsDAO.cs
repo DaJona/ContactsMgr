@@ -69,17 +69,17 @@ namespace DAO.Contacts
             return (Contact)getConvertedDatatable(dt, typeof(Contact));
         }
 
-        public void createContact(Contact enContact)
+        public int createContact(Contact enContact)
         {
             string sqlSentence = "";
             SqlParameter[] sqlParameters;
 
             try
             {
-                sqlSentence += "INSERT INTO contacts (memberId, firstName, lastName, email, mobileNumber, landlineNumber, isActive, createdAt) ";
-                sqlSentence += "VALUES (@memberId, @firstName, @lastName, @email, @mobileNumber, @landlineNumber, @isActive, @createdAt) ";
+                sqlSentence += "INSERT INTO contacts (memberId, firstName, lastName, email, mobileNumber, landlineNumber, isActive, picExtension, createdAt) ";
+                sqlSentence += "VALUES (@memberId, @firstName, @lastName, @email, @mobileNumber, @landlineNumber, @isActive, @picExtension, @createdAt) ";
 
-                sqlParameters = new SqlParameter[8];
+                sqlParameters = new SqlParameter[9];
                 sqlParameters[0] = new SqlParameter("@memberId", memberInfo.id);
                 sqlParameters[1] = new SqlParameter("@firstName", enContact.firstName);
                 sqlParameters[2] = new SqlParameter("@lastName", enContact.lastName);
@@ -89,7 +89,16 @@ namespace DAO.Contacts
                 sqlParameters[6] = new SqlParameter("@isActive", true);
                 sqlParameters[7] = new SqlParameter("@createdAt", DateTime.Now.ToUniversalTime().ToString("yyyyMMdd HH:mm:ss"));
 
-                dbWrapper.InsertUpdateDelete(sqlSentence, sqlParameters);
+                if (enContact.picExtension == string.Empty)
+                {
+                    sqlParameters[8] = new SqlParameter("@picExtension", DBNull.Value);
+                }
+                else
+                {
+                    sqlParameters[8] = new SqlParameter("@picExtension", enContact.picExtension);
+                }
+
+                return dbWrapper.Insert(sqlSentence, sqlParameters);
             }
             catch (Exception ex)
             {
@@ -109,11 +118,12 @@ namespace DAO.Contacts
                 sqlSentence += "contacts.lastName = @lastName, ";
                 sqlSentence += "contacts.email = @email, ";
                 sqlSentence += "contacts.mobileNumber = @mobileNumber, ";
-                sqlSentence += "contacts.landlineNumber = @landlineNumber ";
+                sqlSentence += "contacts.landlineNumber = @landlineNumber, ";
+                sqlSentence += "contacts.picExtension = @picExtension ";
                 sqlSentence += "WHERE contacts.memberId = @memberId ";
                 sqlSentence += "AND contacts.id = @contactId ";
 
-                sqlParameters = new SqlParameter[7];
+                sqlParameters = new SqlParameter[8];
                 sqlParameters[0] = new SqlParameter("@firstName", enContact.firstName);
                 sqlParameters[1] = new SqlParameter("@lastName", enContact.lastName);
                 sqlParameters[2] = new SqlParameter("@email", enContact.email);
@@ -122,7 +132,36 @@ namespace DAO.Contacts
                 sqlParameters[5] = new SqlParameter("@memberId", memberInfo.id);
                 sqlParameters[6] = new SqlParameter("@contactId", enContact.id);
 
-                dbWrapper.InsertUpdateDelete(sqlSentence, sqlParameters);
+                if (enContact.picExtension == string.Empty)
+                {
+                    sqlParameters[7] = new SqlParameter("@picExtension", DBNull.Value);
+                }
+                else
+                {
+                    sqlParameters[7] = new SqlParameter("@picExtension", enContact.picExtension);
+                }
+
+                dbWrapper.UpdateDelete(sqlSentence, sqlParameters);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void deleteContact(int contactId)
+        {
+            string sqlSentence = "";
+            SqlParameter[] sqlParameters;
+
+            try
+            {
+                sqlSentence += "DELETE FROM contacts WHERE contacts.id = @contactId ";
+
+                sqlParameters = new SqlParameter[1];
+                sqlParameters[0] = new SqlParameter("@contactId", contactId);
+
+                dbWrapper.UpdateDelete(sqlSentence, sqlParameters);
             }
             catch (Exception ex)
             {
@@ -147,7 +186,7 @@ namespace DAO.Contacts
                 sqlParameters[1] = new SqlParameter("@memberId", memberInfo.id);
                 sqlParameters[2] = new SqlParameter("@contactId", contactId);
 
-                dbWrapper.InsertUpdateDelete(sqlSentence, sqlParameters);
+                dbWrapper.UpdateDelete(sqlSentence, sqlParameters);
             }
             catch (Exception ex)
             {
@@ -172,7 +211,7 @@ namespace DAO.Contacts
                 sqlParameters[1] = new SqlParameter("@memberId", memberInfo.id);
                 sqlParameters[2] = new SqlParameter("@contactId", contactId);
 
-                dbWrapper.InsertUpdateDelete(sqlSentence, sqlParameters);
+                dbWrapper.UpdateDelete(sqlSentence, sqlParameters);
             }
             catch (Exception ex)
             {

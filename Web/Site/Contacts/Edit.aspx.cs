@@ -3,6 +3,7 @@ using Entity.Contacts;
 using Service.Contacts;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -40,6 +41,7 @@ namespace Web.Site.Contacts
                 txtEmail.Text = existingContact.email;
                 txtMobileNumber.Text = existingContact.mobileNumber;
                 txtLandlineNumber.Text = existingContact.landlineNumber;
+                lblCreatedAt.Text = Formatting.timeZonedDateTime(existingContact.createdAt, SessionManager.sessionMemberInfo.lang, SessionManager.sessionMemberInfo.timeZoneMinsOffset);
             }
             catch (Exception)
             {

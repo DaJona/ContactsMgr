@@ -22,7 +22,7 @@ namespace Service.Members
             try
             {
                 Member member;
-                member = membersDao.getMember(memberUser, Encoding.getHashedPassword(memberUser, memberPassword));
+                member = membersDao.getMember(memberUser, Encoding.sha512(memberUser, memberPassword));
 
                 if (member != null)
                 {
@@ -59,7 +59,7 @@ namespace Service.Members
                 }
 
                 // Overwrite the member password with more secure one
-                enMember.password = Encoding.getHashedPassword(enMember.email, enMember.password);
+                enMember.password = Encoding.sha512(enMember.email, enMember.password);
 
                 membersDao.createMember(enMember);
 

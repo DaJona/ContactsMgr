@@ -10,6 +10,9 @@ namespace Web.Site
         {
             string lang = "es-es";
 
+            if (SessionManager.sessionMemberInfo == null)
+                Response.Redirect(Pages.getLogin(), true);
+
             if (SessionManager.sessionMemberInfo.lang != string.Empty)
                 lang = SessionManager.sessionMemberInfo.lang;
 

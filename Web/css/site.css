@@ -42,3 +42,16 @@ a:hover {
 table tr th.action {
     width: 10px;
 }
+
+div.formContactPic {
+    width: 180px;
+    height: 200px;
+    margin: 0 auto;
+    border: 1px solid black;
+    margin-bottom: 15px;
+}
+
+div.formContactPic img {
+    width: 178px;
+    height: 198px;
+}

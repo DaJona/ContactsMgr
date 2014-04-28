@@ -64,9 +64,11 @@
     <Content Include="css\bootstrap\bootstrap.css" />
     <Content Include="css\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="css\site.css" />
-    <Content Include="img\login-icon.png" />
+    <Content Include="img\contactsPics\no-pic.jpg" />
+    <Content Include="js\bootstrap.file-input.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\jquery-1.7.2.js" />
+    <Content Include="js\site.js" />
     <Content Include="packages.config" />
     <Content Include="css\bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="css\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
@@ -249,6 +251,7 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

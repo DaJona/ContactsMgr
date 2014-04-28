@@ -129,6 +129,9 @@
   <data name="CambiarContrasena" xml:space="preserve">
     <value>Cambiar la Contraseña</value>
   </data>
+  <data name="CambiarFotoContacto" xml:space="preserve">
+    <value>Cambiar foto del Contacto</value>
+  </data>
   <data name="CerrarSesion" xml:space="preserve">
     <value>Cerrar Sesión</value>
   </data>
@@ -194,6 +197,9 @@
   </data>
   <data name="ErrorEmailYaExiste" xml:space="preserve">
     <value>El Correo Electrónico indicado ya existe</value>
+  </data>
+  <data name="ErrorFotoContactoInvalida" xml:space="preserve">
+    <value>El archivo seleccionado no es válido. Solo se admiten imágenes .jpg, .png o .bmp y que no superen los 2Mb de tamaño</value>
   </data>
   <data name="ErrorGeneral" xml:space="preserve">
     <value>¡Ups! Ha ocurrido un error inesperado y estamos trabajando en ello. Intenta de nuevo más tarde</value>

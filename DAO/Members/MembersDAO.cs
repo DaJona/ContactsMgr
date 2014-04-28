@@ -111,7 +111,7 @@ namespace DAO.Members
                 sqlParameters[5] = new SqlParameter("@isActive", true);
                 sqlParameters[6] = new SqlParameter("@createdAt", DateTime.Now.ToUniversalTime().ToString("yyyyMMdd HH:mm:ss"));
 
-                dbWrapper.InsertUpdateDelete(sqlSentence, sqlParameters);
+                dbWrapper.Insert(sqlSentence, sqlParameters);
             }
             catch (Exception ex)
             {

@@ -13,6 +13,24 @@ namespace Web.Site.Contacts {
     public partial class Create {
         
         /// <summary>
+        /// imgContactPic control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgContactPic;
+        
+        /// <summary>
+        /// uplContactPic control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload uplContactPic;
+        
+        /// <summary>
         /// txtFirstName control.
         /// </summary>
         /// <remarks>

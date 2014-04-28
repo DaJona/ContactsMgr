@@ -81,8 +81,9 @@ namespace Service.Contacts
 
             try
             {
-                contactsDAO.createContact(enContact);
+                int createdContactId = contactsDAO.createContact(enContact);
                 result.code = TransactionResult.transactionResultCode.Success;
+                result.affectedId = createdContactId;
             }
             catch (Exception ex)
             {
@@ -111,6 +112,18 @@ namespace Service.Contacts
             }
 
             return result;
+        }
+
+        public void deleteContact(int contactId)
+        {
+            try
+            {
+                contactsDAO.deleteContact(contactId);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

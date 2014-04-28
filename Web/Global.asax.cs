@@ -52,10 +52,16 @@ namespace Web
 
             var page = context.Handler as Page; if (page == null) return;
 
-            // Assign the resolve url method 
+            // Assign the ResolveUrl method 
             if (Pages.ResolveUrl == null)
             {
                 Pages.ResolveUrl = page.ResolveUrl;
+            }
+
+            // Assign the ServerMapPath method 
+            if (SitePaths.ServerMapPath == null)
+            {
+                SitePaths.ServerMapPath = page.Server.MapPath;
             }
         } 
     }

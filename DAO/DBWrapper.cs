@@ -20,11 +20,63 @@ namespace DAO
         #region Insert/Update/Delete
 
         /// <summary>
-        /// Inserts, updates or deletes information to database.
+        /// Inserts information to database.
         /// </summary>
-        /// <param name="sqlQuery">The query to make the insert, update or delete.</param>
+        /// <param name="sqlQuery">The query to make the insert.</param>
+        /// <returns>The PK of the new row</returns>
+        public int Insert(string sqlQuery, SqlParameter[] sqlParameters)
+        {
+            try
+            {
+                sqlQuery += " SELECT SCOPE_IDENTITY() ";
+
+                oConStringBuilder = new SqlConnectionStringBuilder();
+                oConStringBuilder.DataSource = sqlServerInstanceName;
+                oConStringBuilder.InitialCatalog = dbName;
+                oConStringBuilder.UserID = dbUser;
+                oConStringBuilder.Password = dbPassword;
+                oConStringBuilder.IntegratedSecurity = useIntegratedSecurity;
+
+                using (oSqlConn = new SqlConnection(oConStringBuilder.ConnectionString))
+                {
+                    if (oSqlConn.State != ConnectionState.Open)
+                    {
+                        oSqlConn.Open();
+                    }
+
+                    using (oSqlCmd = new SqlCommand())
+                    {
+                        oSqlCmd.Connection = oSqlConn;
+                        oSqlCmd.CommandText = sqlQuery;
+
+                        if (sqlParameters.Length > 0)
+                        {
+                            oSqlCmd.Parameters.AddRange(sqlParameters);
+                        }
+
+                        return Convert.ToInt32(oSqlCmd.ExecuteScalar());
+                    }
+                }
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+            finally
+            {
+                if (oSqlConn.State == ConnectionState.Open)
+                {
+                    oSqlConn.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Updates or deletes information to database.
+        /// </summary>
+        /// <param name="sqlQuery">The query to make the update or delete.</param>
         /// <returns>The number of rows affected</returns>
-        public int InsertUpdateDelete(string sqlQuery, SqlParameter[] sqlParameters)
+        public int UpdateDelete(string sqlQuery, SqlParameter[] sqlParameters)
         {
             try
             {
@@ -70,12 +122,54 @@ namespace DAO
         }
 
         /// <summary>
-        /// Inserts, updates or deletes information to database into a transaction.
+        /// Inserts information to database into a transaction.
         /// </summary>
-        /// <param name="sqlQuery">The query to make the insert, update or delete.</param>
-        /// <param name="transaction">The transaction used to perform the insert, update or delete.</param>
+        /// <param name="sqlQuery">The query to make the insert.</param>
+        /// <param name="transaction">The transaction used to perform the insert.</param>
+        /// <returns>The PK of the new row</returns>
+        public int Insert(string sqlQuery, SqlParameter[] sqlParameters, IDbTransaction transaction)
+        {
+            try
+            {
+                sqlQuery += " SELECT SCOPE_IDENTITY() ";
+
+                oConStringBuilder = new SqlConnectionStringBuilder();
+                oConStringBuilder.DataSource = sqlServerInstanceName;
+                oConStringBuilder.InitialCatalog = dbName;
+                oConStringBuilder.UserID = dbUser;
+                oConStringBuilder.Password = dbPassword;
+                oConStringBuilder.IntegratedSecurity = useIntegratedSecurity;
+
+                using (transaction)
+                {
+                    using (oSqlCmd = new SqlCommand())
+                    {
+                        oSqlCmd.Connection = (SqlConnection)transaction.Connection;
+                        oSqlCmd.Transaction = (SqlTransaction)transaction;
+                        oSqlCmd.CommandText = sqlQuery;
+
+                        if (sqlParameters.Length > 0)
+                        {
+                            oSqlCmd.Parameters.AddRange(sqlParameters);
+                        }
+
+                        return Convert.ToInt32(oSqlCmd.ExecuteScalar());
+                    }
+                }
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+        }
+
+        /// <summary>
+        /// Updates or deletes information to database into a transaction.
+        /// </summary>
+        /// <param name="sqlQuery">The query to make the update or delete.</param>
+        /// <param name="transaction">The transaction used to perform the update or delete.</param>
         /// <returns>The number of rows affected</returns>
-        public int InsertUpdateDelete(string sqlQuery, SqlParameter[] sqlParameters, IDbTransaction transaction)
+        public int UpdateDelete(string sqlQuery, SqlParameter[] sqlParameters, IDbTransaction transaction)
         {
             try
             {

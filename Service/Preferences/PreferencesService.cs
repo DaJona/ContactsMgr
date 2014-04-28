@@ -91,7 +91,7 @@ namespace Service.Preferences
                 MembersDAO membersDAO = new MembersDAO();
                 Member enMember = membersDAO.getMember(memberInfo.id);
                 string savedPassword = enMember.password;
-                string newPassword = Encoding.getHashedPassword(enMember.email, passwordPreferences.actualPassword);
+                string newPassword = Encoding.sha512(enMember.email, passwordPreferences.actualPassword);
 
                 // If the saved password is the same than the 'actualPassword' sent, continue update
                 if (savedPassword == newPassword)
@@ -99,7 +99,7 @@ namespace Service.Preferences
                     PreferencesDAO preferencesDAO = new PreferencesDAO(memberInfo);
 
                     // Overwrite the member new password with more secure one
-                    passwordPreferences.newPassword = Encoding.getHashedPassword(enMember.email, passwordPreferences.newPassword);
+                    passwordPreferences.newPassword = Encoding.sha512(enMember.email, passwordPreferences.newPassword);
 
                     preferencesDAO.updatePasswordPreferences(passwordPreferences);
 

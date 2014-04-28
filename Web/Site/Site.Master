@@ -50,6 +50,8 @@
             <!-- Javascripts -->
             <script type="text/javascript" lang="javascript" src="<%= ResolveUrl("~/js/jquery-1.7.2.js")%>"></script>
             <script type="text/javascript" lang="javascript" src="<%= ResolveUrl("~/js/bootstrap.js")%>"></script>
+            <script type="text/javascript" lang="javascript" src="<%= ResolveUrl("~/js/bootstrap.file-input.js")%>"></script>
+            <script type="text/javascript" lang="javascript" src="<%= ResolveUrl("~/js/site.js")%>"></script>
             <!-- Javascripts -->
 
             <div id="mainContainer">
