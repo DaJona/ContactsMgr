@@ -3,11 +3,14 @@ using DTO.System;
 using Entity.Contacts;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using Utilities;
 
 namespace Service.Contacts
 {
     public class ContactsService
     {
+        public static Func<string, string> ServerMapPath;
         private SessionMemberInfo memberInfo;
         private ContactsDAO contactsDAO;
 
@@ -95,13 +98,31 @@ namespace Service.Contacts
             return result;
         }
 
-        public TransactionResult editContact(Contact enContact)
+        public TransactionResult editContact(Contact enContact, bool deleteContactPic = false)
         {
             TransactionResult result = new TransactionResult();
 
             try
             {
+                if (deleteContactPic)
+                {
+                    deleteContacPics(enContact.id);
+                    contactsDAO.editContactPicExtension(enContact.id, string.Empty);
+                }
+
                 contactsDAO.editContact(enContact);
+
+                // Only if the new contact info contains pic extension data, we will update it 
+                // because the 'editContact' method does not update that field.
+                if (enContact.picExtension != string.Empty)
+                {
+                    // Look for existing pics for the contact and delete them. This because the user may 
+                    // be updating the contact pic with a new one with different extension.
+                    deleteContacPics(enContact.id);
+
+                    contactsDAO.editContactPicExtension(enContact.id, enContact.picExtension);
+                }
+
                 result.code = TransactionResult.transactionResultCode.Success;
             }
             catch (Exception ex)
@@ -123,6 +144,15 @@ namespace Service.Contacts
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public void deleteContacPics(int contactId)
+        {
+            string[] contactPicsList = Directory.GetFiles(ServerMapPath(SitePaths.contactsPics(memberInfo.id)), Encoding.sha1(contactId.ToString()) + "*");
+            foreach (string contactExistingPic in contactPicsList)
+            {
+                File.Delete(contactExistingPic);
             }
         }
     }

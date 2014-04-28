@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Service.Contacts;
+using System;
 using System.Web;
 using System.Web.Routing;
 using System.Web.UI;
@@ -62,6 +63,10 @@ namespace Web
             if (SitePaths.ServerMapPath == null)
             {
                 SitePaths.ServerMapPath = page.Server.MapPath;
+            }
+            if (ContactsService.ServerMapPath == null)
+            {
+                ContactsService.ServerMapPath = page.Server.MapPath;
             }
         } 
     }

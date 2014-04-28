@@ -118,12 +118,11 @@ namespace DAO.Contacts
                 sqlSentence += "contacts.lastName = @lastName, ";
                 sqlSentence += "contacts.email = @email, ";
                 sqlSentence += "contacts.mobileNumber = @mobileNumber, ";
-                sqlSentence += "contacts.landlineNumber = @landlineNumber, ";
-                sqlSentence += "contacts.picExtension = @picExtension ";
+                sqlSentence += "contacts.landlineNumber = @landlineNumber ";
                 sqlSentence += "WHERE contacts.memberId = @memberId ";
                 sqlSentence += "AND contacts.id = @contactId ";
 
-                sqlParameters = new SqlParameter[8];
+                sqlParameters = new SqlParameter[7];
                 sqlParameters[0] = new SqlParameter("@firstName", enContact.firstName);
                 sqlParameters[1] = new SqlParameter("@lastName", enContact.lastName);
                 sqlParameters[2] = new SqlParameter("@email", enContact.email);
@@ -132,13 +131,37 @@ namespace DAO.Contacts
                 sqlParameters[5] = new SqlParameter("@memberId", memberInfo.id);
                 sqlParameters[6] = new SqlParameter("@contactId", enContact.id);
 
-                if (enContact.picExtension == string.Empty)
+                dbWrapper.UpdateDelete(sqlSentence, sqlParameters);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void editContactPicExtension(int contactId, string newPicExtension)
+        {
+            string sqlSentence = "";
+            SqlParameter[] sqlParameters;
+
+            try
+            {
+                sqlSentence += "UPDATE contacts SET ";
+                sqlSentence += "contacts.picExtension = @picExtension ";
+                sqlSentence += "WHERE contacts.memberId = @memberId ";
+                sqlSentence += "AND contacts.id = @contactId ";
+
+                sqlParameters = new SqlParameter[3];
+                sqlParameters[0] = new SqlParameter("@memberId", memberInfo.id);
+                sqlParameters[1] = new SqlParameter("@contactId", contactId);
+
+                if (newPicExtension == string.Empty)
                 {
-                    sqlParameters[7] = new SqlParameter("@picExtension", DBNull.Value);
+                    sqlParameters[2] = new SqlParameter("@picExtension", DBNull.Value);
                 }
                 else
                 {
-                    sqlParameters[7] = new SqlParameter("@picExtension", enContact.picExtension);
+                    sqlParameters[2] = new SqlParameter("@picExtension", newPicExtension);
                 }
 
                 dbWrapper.UpdateDelete(sqlSentence, sqlParameters);
@@ -236,10 +259,11 @@ namespace DAO.Contacts
                 enContact.memberId = (int)data.Rows[0]["memberId"];
                 enContact.firstName = (string)data.Rows[0]["firstName"];
                 enContact.lastName = (string)data.Rows[0]["lastName"];
-                enContact.email = (string)data.Rows[0]["email"];
-                enContact.mobileNumber = (string)data.Rows[0]["mobileNumber"];
-                enContact.landlineNumber = (string)data.Rows[0]["landlineNumber"];
+                enContact.email = data.Rows[0]["email"] is DBNull ? string.Empty : (string)data.Rows[0]["email"];
+                enContact.mobileNumber = data.Rows[0]["mobileNumber"] is DBNull ? string.Empty : (string)data.Rows[0]["mobileNumber"];
+                enContact.landlineNumber = data.Rows[0]["landlineNumber"] is DBNull ? string.Empty : (string)data.Rows[0]["landlineNumber"];
                 enContact.isActive = (bool)data.Rows[0]["isActive"];
+                enContact.picExtension = data.Rows[0]["picExtension"] is DBNull ? string.Empty : (string)data.Rows[0]["picExtension"];
                 enContact.createdAt = (DateTime)data.Rows[0]["createdAt"];
 
                 convertedDatatable = enContact;
@@ -261,6 +285,7 @@ namespace DAO.Contacts
                     enContact.mobileNumber = data.Rows[index]["mobileNumber"] is DBNull ? string.Empty : (string)data.Rows[index]["mobileNumber"];
                     enContact.landlineNumber = data.Rows[index]["landlineNumber"] is DBNull ? string.Empty : (string)data.Rows[index]["landlineNumber"];
                     enContact.isActive = (bool)data.Rows[index]["isActive"];
+                    enContact.picExtension = data.Rows[index]["picExtension"] is DBNull ? string.Empty : (string)data.Rows[index]["picExtension"];
                     enContact.createdAt = (DateTime)data.Rows[index]["createdAt"];
 
                     listContacts.Add(enContact);

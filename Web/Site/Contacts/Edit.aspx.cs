@@ -41,7 +41,15 @@ namespace Web.Site.Contacts
                 txtEmail.Text = existingContact.email;
                 txtMobileNumber.Text = existingContact.mobileNumber;
                 txtLandlineNumber.Text = existingContact.landlineNumber;
-                lblCreatedAt.Text = Formatting.timeZonedDateTime(existingContact.createdAt, SessionManager.sessionMemberInfo.lang, SessionManager.sessionMemberInfo.timeZoneMinsOffset);
+
+                // If the contact has an extension, means that has a pic
+                if (existingContact.picExtension != string.Empty)
+                {
+                    imgContactPic.ImageUrl = SitePaths.contactsPics(SessionManager.sessionMemberInfo.id) + Encoding.sha1(existingContact.id.ToString()) + existingContact.picExtension;
+                    chkDeletePic.Visible = true;
+                }
+
+                //lblCreatedAt.Text = Formatting.timeZonedDateTime(existingContact.createdAt, SessionManager.sessionMemberInfo.lang, SessionManager.sessionMemberInfo.timeZoneMinsOffset);
             }
             catch (Exception)
             {
@@ -57,17 +65,46 @@ namespace Web.Site.Contacts
                 Contact editedContact = new Contact();
                 TransactionResult result;
 
+                // Variables to manage the contact pic file
+                string fileExtension = "";
+                int fileSizeInBytes = 0;
+
+                if (uplContactPic.HasFile)
+                {
+                    fileExtension = System.IO.Path.GetExtension(uplContactPic.FileName);
+                    fileSizeInBytes = uplContactPic.PostedFile.ContentLength;
+
+                    if (!FilesValidations.isValidContactPic(fileExtension, fileSizeInBytes))
+                    {
+                        showError(HttpContext.GetGlobalResourceObject("Resource", "ErrorFotoContactoInvalida").ToString());
+                        return;
+                    }
+                }
+
                 editedContact.id = Convert.ToInt32(Request.QueryString[Parameters.id]);
                 editedContact.firstName = txtFirstName.Text;
                 editedContact.lastName = txtLastName.Text;
                 editedContact.email = txtEmail.Text;
                 editedContact.mobileNumber = txtMobileNumber.Text;
                 editedContact.landlineNumber = txtLandlineNumber.Text;
+                editedContact.picExtension = fileExtension;
 
-                result = contactsService.editContact(editedContact);
+                result = contactsService.editContact(editedContact, chkDeletePic.Checked);
                 if (result.code == TransactionResult.transactionResultCode.Success)
                 {
-                    Response.Redirect(Pages.getContactsDefault(), true);
+                    try
+                    {
+                        if (uplContactPic.HasFile)
+                        {
+                            uplContactPic.SaveAs(Server.MapPath(SitePaths.contactsPics(SessionManager.sessionMemberInfo.id) + Encoding.sha1(editedContact.id.ToString()) + fileExtension));
+                        }
+
+                        Response.Redirect(Pages.getContactsDefault(), false);
+                    }
+                    catch (Exception)
+                    {
+                        showError(HttpContext.GetGlobalResourceObject("Resource", "ErrorGeneral").ToString());
+                    }
                 }
                 else
                 {
@@ -92,6 +129,21 @@ namespace Web.Site.Contacts
             if (Page.IsValid)
             {
                 editContact();
+            }
+        }
+
+        protected void chkDeletePic_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chk = (CheckBox)sender;
+
+            if (chk.Checked)
+            {
+                uplContactPic.Dispose();
+                uplContactPic.Enabled = false;
+            }
+            else
+            {
+                uplContactPic.Enabled = true;
             }
         }
     }

@@ -5,11 +5,17 @@
     <wsc:CMValidationSummary runat="server" />
 
     <div class="row">
-        <div class="col-md-3">
-            <div style="width: 90%; height: 200px; margin: 0 auto; border: 1px solid black;">
-
+        <div class="col-md-3 text-center">
+            <div class="formContactPic">
+                <asp:Image ID="imgContactPic" runat="server" ImageUrl="~/img/contactsPics/no-pic.jpg" onerror="loadDefaultCotactPic(this)" />
             </div>
-            <small><asp:Literal ID="lblCreatedAt" runat="server"></asp:Literal></small>
+
+            <div>
+                <asp:FileUpload ID="uplContactPic" runat="server" title="<%$ Resources:Resource, CambiarFotoContacto %>" data-filename-placement="inside" />
+            </div>
+            <div class="checkboxContainer">
+                <asp:CheckBox ID="chkDeletePic" runat="server" Text="<%$ Resources:Resource, EliminarFotoContacto %>" Visible="false" AutoPostBack="true" OnCheckedChanged="chkDeletePic_CheckedChanged" />
+            </div>
         </div>
         <div class="col-md-9">
             <div class="form-group">
@@ -41,4 +47,10 @@
         <wsc:CMButton ID="cmdEditContact" runat="server" Text="<%$ Resources:Resource, Editar%>" CssClass="btn-lg" OnClick="cmdEditContact_Click" />
         <wsc:CMCustomValidator ID="cvEditContact" runat="server" />
     </div>
+
+    <script type="text/javascript">
+        function loadDefaultCotactPic(imgObj) {
+            $(imgObj).attr('src', '<%= ResolveUrl("~/img/contactsPics/no-pic.jpg")%>');
+        }
+    </script>
 </asp:Content>

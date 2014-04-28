@@ -31,7 +31,9 @@ div.well ul.list-inline li:last-child {
 }
 
 a,
-button {
+button,
+input[type=submit],
+input[type=file] {
    outline: 0 none !important;
 }
 
@@ -54,4 +56,24 @@ div.formContactPic {
 div.formContactPic img {
     width: 178px;
     height: 198px;
+}
+
+button,
+input[type=submit],
+.file-input-wrapper {
+    margin: 5px 0;
+}
+
+div.checkboxContainer label {
+    font-weight: normal;
+    margin-left: 5px;
+}
+
+.aspNetDisabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    opacity: .65;
 }

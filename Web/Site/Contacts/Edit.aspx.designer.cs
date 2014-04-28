@@ -13,13 +13,31 @@ namespace Web.Site.Contacts {
     public partial class Edit {
         
         /// <summary>
-        /// lblCreatedAt control.
+        /// imgContactPic control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblCreatedAt;
+        protected global::System.Web.UI.WebControls.Image imgContactPic;
+        
+        /// <summary>
+        /// uplContactPic control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload uplContactPic;
+        
+        /// <summary>
+        /// chkDeletePic control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkDeletePic;
         
         /// <summary>
         /// txtFirstName control.
