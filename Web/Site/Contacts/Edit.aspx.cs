@@ -12,7 +12,7 @@ using Utilities;
 
 namespace Web.Site.Contacts
 {
-    public partial class Edit : System.Web.UI.Page
+    public partial class Edit : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

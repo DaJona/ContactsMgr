@@ -8,7 +8,7 @@ using Utilities;
 
 namespace Web.Site.Preferences
 {
-    public partial class Password : System.Web.UI.Page
+    public partial class Password : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

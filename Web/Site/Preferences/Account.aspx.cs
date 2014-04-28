@@ -6,7 +6,7 @@ using Utilities;
 
 namespace Web.Site.Preferences
 {
-    public partial class Account : System.Web.UI.Page
+    public partial class Account : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
