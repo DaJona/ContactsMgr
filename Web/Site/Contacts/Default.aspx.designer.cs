@@ -47,5 +47,41 @@ namespace Web.Site.Contacts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::WSC.CMCustomValidator cvDefaultContacts;
+        
+        /// <summary>
+        /// hdnContactIdToDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnContactIdToDelete;
+        
+        /// <summary>
+        /// deleteContactModal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel deleteContactModal;
+        
+        /// <summary>
+        /// cmdDeleteContact control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button cmdDeleteContact;
+        
+        /// <summary>
+        /// mpeDeleteContact control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender mpeDeleteContact;
     }
 }

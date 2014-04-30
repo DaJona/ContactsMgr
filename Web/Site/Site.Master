@@ -55,6 +55,7 @@
             <!-- Javascripts -->
 
             <div id="mainContainer">
+                <ajaxToolkit:ToolkitScriptManager runat="server" EnablePartialRendering="true" />
                 <asp:ContentPlaceHolder ID="site" runat="server"></asp:ContentPlaceHolder>
             </div>
 

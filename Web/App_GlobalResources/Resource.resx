@@ -141,8 +141,14 @@
   <data name="ClicEditar" xml:space="preserve">
     <value>Haga clic para editar</value>
   </data>
+  <data name="ClicEliminar" xml:space="preserve">
+    <value>Haga clic para eliminar</value>
+  </data>
   <data name="ConfirmarContrasena" xml:space="preserve">
     <value>Confirmar Contraseña</value>
+  </data>
+  <data name="ConfirmarEliminarContacto" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar este contacto?</value>
   </data>
   <data name="Contrasena" xml:space="preserve">
     <value>Contraseña</value>
@@ -164,6 +170,9 @@
   </data>
   <data name="EditarContacto" xml:space="preserve">
     <value>Editar Contacto</value>
+  </data>
+  <data name="EliminarContacto" xml:space="preserve">
+    <value>Eliminar Contacto</value>
   </data>
   <data name="EliminarFotoContacto" xml:space="preserve">
     <value>Eliminar foto del Contacto</value>

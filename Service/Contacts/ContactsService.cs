@@ -139,6 +139,7 @@ namespace Service.Contacts
         {
             try
             {
+                deleteContacPics(contactId);
                 contactsDAO.deleteContact(contactId);
             }
             catch (Exception ex)

@@ -81,20 +81,42 @@ namespace Web.Site.Contacts
                     case "editContact":
                         Response.Redirect(Pages.getContactsEdit(contactId), true);
                         break;
+                    case "deleteContact":
+                        hdnContactIdToDelete.Value = contactId.ToString();
+                        mpeDeleteContact.Show();
+                        break;
                     case "deactivate":
                         contactsService.deactivateContact(contactId);
+                        //Response.Redirect(Pages.getContactsDefault(), true);
+                        searchContacts();
                         break;
                     case "activate":
                         contactsService.activateContact(contactId);
+                        //Response.Redirect(Pages.getContactsDefault(), true);
+                        searchContacts();
                         break;
                 }
-
-                Response.Redirect(Pages.getContactsDefault(), true);
             }
             catch (Exception)
             {
                 showError(HttpContext.GetGlobalResourceObject("Resource", "ErrorGeneral").ToString());
             }            
+        }
+
+        protected void cmdDeleteContact_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ContactsService contactsService = new ContactsService(SessionManager.sessionMemberInfo);
+                contactsService.deleteContact(Convert.ToInt32(hdnContactIdToDelete.Value));
+
+                //Response.Redirect(Pages.getContactsDefault(), true);
+                searchContacts();
+            }
+            catch (Exception)
+            {
+                showError(HttpContext.GetGlobalResourceObject("Resource", "ErrorGeneral").ToString());
+            }
         }
     }
 }
