@@ -103,6 +103,15 @@ namespace Web.Site.Contacts {
         protected global::WSC.CMButton cmdCreateContact;
         
         /// <summary>
+        /// cmdCancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button cmdCancel;
+        
+        /// <summary>
         /// cvCreateContact control.
         /// </summary>
         /// <remarks>

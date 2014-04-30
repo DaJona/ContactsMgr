@@ -146,5 +146,10 @@ namespace Web.Site.Contacts
                 uplContactPic.Enabled = true;
             }
         }
+
+        protected void cmdCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Pages.getContactsDefault(), true);
+        }
     }
 }

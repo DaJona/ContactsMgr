@@ -132,6 +132,9 @@
   <data name="CambiarFotoContacto" xml:space="preserve">
     <value>Cambiar foto del Contacto</value>
   </data>
+  <data name="Cancelar" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
   <data name="CerrarSesion" xml:space="preserve">
     <value>Cerrar Sesión</value>
   </data>

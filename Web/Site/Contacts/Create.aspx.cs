@@ -93,5 +93,10 @@ namespace Web.Site.Contacts
                 createContact();
             }
         }
+
+        protected void cmdCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Pages.getContactsDefault(), true);
+        }
     }
 }

@@ -45,6 +45,7 @@
 
     <div class="btnContainer">
         <wsc:CMButton ID="cmdEditContact" runat="server" Text="<%$ Resources:Resource, Editar%>" CssClass="btn-lg" OnClick="cmdEditContact_Click" />
+        <asp:Button ID="cmdCancel" runat="server" Text="<%$ Resources:Resource, Cancelar %>" CssClass="btn btn-default btn-lg" CausesValidation="false" OnClick="cmdCancel_Click" />
         <wsc:CMCustomValidator ID="cvEditContact" runat="server" />
     </div>
 
