@@ -49,7 +49,18 @@ namespace Web.Site.Contacts
                     chkDeletePic.Visible = true;
                 }
 
-                //lblCreatedAt.Text = Formatting.timeZonedDateTime(existingContact.createdAt, SessionManager.sessionMemberInfo.lang, SessionManager.sessionMemberInfo.timeZoneMinsOffset);
+                // If contact is not active, the user can not edit it
+                if (!existingContact.isActive)
+                {
+                    txtFirstName.Enabled = false;
+                    txtLastName.Enabled = false;
+                    txtEmail.Enabled = false;
+                    txtMobileNumber.Enabled = false;
+                    txtLandlineNumber.Enabled = false;
+                    cmdEditContact.Visible = false;
+                    uplContactPic.Visible = false;
+                    chkDeletePic.Visible = false;
+                }
             }
             catch (Exception)
             {
