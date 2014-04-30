@@ -8,6 +8,7 @@ namespace Entity.Contacts
         public int memberId { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
+        public string genre { get; set; }
         public string email { get; set; }
         public string mobileNumber { get; set; }
         public string landlineNumber { get; set; }

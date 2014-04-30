@@ -23,6 +23,15 @@
                 <wsc:CMRequiredFieldValidator ID="reqLastName" runat="server" ControlToValidate="txtLastName" ErrorMessage="<%$ Resources:Resource, ErrorApellidosReq%>" />
             </div>
             <div class="form-group">
+                <asp:Label runat="server" AssociatedControlID="ddlGenre" Text="<%$ Resources:Resource, Genero%>"></asp:Label>
+                <asp:DropDownList ID="ddlGenre" runat="server" CssClass="form-control">
+                    <asp:ListItem Value="0" Text="--" Selected="True"></asp:ListItem>
+                    <asp:ListItem Value="F" Text="<%$ Resources:Resource, Femenino%>"></asp:ListItem>
+                    <asp:ListItem Value="M" Text="<%$ Resources:Resource, Masculino%>"></asp:ListItem>
+                </asp:DropDownList>
+                <wsc:CMRequiredFieldValidator ID="reqGenre" runat="server" ControlToValidate="ddlGenre" InitialValue="0" ErrorMessage="<%$ Resources:Resource, ErrorGenreReq%>" />
+            </div>
+            <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="txtEmail" Text="<%$ Resources:Resource, Email%>"></asp:Label>
                 <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" type="email" MaxLength="50"></asp:TextBox>
             </div>

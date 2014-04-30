@@ -219,6 +219,9 @@
   <data name="ErrorGeneral" xml:space="preserve">
     <value>¡Ups! Ha ocurrido un error inesperado y estamos trabajando en ello. Intenta de nuevo más tarde</value>
   </data>
+  <data name="ErrorGenreReq" xml:space="preserve">
+    <value>Debe indicar el género</value>
+  </data>
   <data name="ErrorNombreCompletoReq" xml:space="preserve">
     <value>Debe ingresar el Nombre Completo</value>
   </data>
@@ -237,6 +240,12 @@
   <data name="Estado" xml:space="preserve">
     <value>Estado</value>
   </data>
+  <data name="Femenino" xml:space="preserve">
+    <value>Femenino</value>
+  </data>
+  <data name="Genero" xml:space="preserve">
+    <value>Género</value>
+  </data>
   <data name="GenialExclamacion" xml:space="preserve">
     <value>¡Genial!</value>
   </data>
@@ -251,6 +260,9 @@
   </data>
   <data name="IniciarSesion" xml:space="preserve">
     <value>Iniciar Sesión</value>
+  </data>
+  <data name="Masculino" xml:space="preserve">
+    <value>Masculino</value>
   </data>
   <data name="Menu" xml:space="preserve">
     <value>Menú</value>

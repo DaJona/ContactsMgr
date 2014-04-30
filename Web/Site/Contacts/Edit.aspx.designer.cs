@@ -76,6 +76,24 @@ namespace Web.Site.Contacts {
         protected global::WSC.CMRequiredFieldValidator reqLastName;
         
         /// <summary>
+        /// ddlGenre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlGenre;
+        
+        /// <summary>
+        /// reqGenre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::WSC.CMRequiredFieldValidator reqGenre;
+        
+        /// <summary>
         /// txtEmail control.
         /// </summary>
         /// <remarks>

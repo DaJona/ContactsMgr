@@ -44,6 +44,7 @@ namespace Web.Site.Contacts
 
                 newContact.firstName = txtFirstName.Text;
                 newContact.lastName = txtLastName.Text;
+                newContact.genre = ddlGenre.SelectedValue;
                 newContact.email = txtEmail.Text;
                 newContact.mobileNumber = txtMobileNumber.Text;
                 newContact.landlineNumber = txtLandlineNumber.Text;

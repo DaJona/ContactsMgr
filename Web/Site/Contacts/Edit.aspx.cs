@@ -38,6 +38,7 @@ namespace Web.Site.Contacts
 
                 txtFirstName.Text = existingContact.firstName;
                 txtLastName.Text = existingContact.lastName;
+                ddlGenre.SelectedValue = existingContact.genre;
                 txtEmail.Text = existingContact.email;
                 txtMobileNumber.Text = existingContact.mobileNumber;
                 txtLandlineNumber.Text = existingContact.landlineNumber;
@@ -54,6 +55,7 @@ namespace Web.Site.Contacts
                 {
                     txtFirstName.Enabled = false;
                     txtLastName.Enabled = false;
+                    ddlGenre.Enabled = false;
                     txtEmail.Enabled = false;
                     txtMobileNumber.Enabled = false;
                     txtLandlineNumber.Enabled = false;
@@ -95,6 +97,7 @@ namespace Web.Site.Contacts
                 editedContact.id = Convert.ToInt32(Request.QueryString[Parameters.id]);
                 editedContact.firstName = txtFirstName.Text;
                 editedContact.lastName = txtLastName.Text;
+                editedContact.genre = ddlGenre.SelectedValue;
                 editedContact.email = txtEmail.Text;
                 editedContact.mobileNumber = txtMobileNumber.Text;
                 editedContact.landlineNumber = txtLandlineNumber.Text;

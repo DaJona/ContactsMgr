@@ -76,26 +76,27 @@ namespace DAO.Contacts
 
             try
             {
-                sqlSentence += "INSERT INTO contacts (memberId, firstName, lastName, email, mobileNumber, landlineNumber, isActive, picExtension, createdAt) ";
-                sqlSentence += "VALUES (@memberId, @firstName, @lastName, @email, @mobileNumber, @landlineNumber, @isActive, @picExtension, @createdAt) ";
+                sqlSentence += "INSERT INTO contacts (memberId, firstName, lastName, genre, email, mobileNumber, landlineNumber, isActive, picExtension, createdAt) ";
+                sqlSentence += "VALUES (@memberId, @firstName, @lastName, @genre, @email, @mobileNumber, @landlineNumber, @isActive, @picExtension, @createdAt) ";
 
-                sqlParameters = new SqlParameter[9];
+                sqlParameters = new SqlParameter[10];
                 sqlParameters[0] = new SqlParameter("@memberId", memberInfo.id);
                 sqlParameters[1] = new SqlParameter("@firstName", enContact.firstName);
                 sqlParameters[2] = new SqlParameter("@lastName", enContact.lastName);
-                sqlParameters[3] = new SqlParameter("@email", enContact.email);
-                sqlParameters[4] = new SqlParameter("@mobileNumber", enContact.mobileNumber);
-                sqlParameters[5] = new SqlParameter("@landlineNumber", enContact.landlineNumber);
-                sqlParameters[6] = new SqlParameter("@isActive", true);
-                sqlParameters[7] = new SqlParameter("@createdAt", DateTime.Now.ToUniversalTime().ToString("yyyyMMdd HH:mm:ss"));
+                sqlParameters[3] = new SqlParameter("@genre", enContact.genre.ToUpper());
+                sqlParameters[4] = new SqlParameter("@email", enContact.email);
+                sqlParameters[5] = new SqlParameter("@mobileNumber", enContact.mobileNumber);
+                sqlParameters[6] = new SqlParameter("@landlineNumber", enContact.landlineNumber);
+                sqlParameters[7] = new SqlParameter("@isActive", true);
+                sqlParameters[8] = new SqlParameter("@createdAt", DateTime.Now.ToUniversalTime().ToString("yyyyMMdd HH:mm:ss"));
 
                 if (enContact.picExtension == string.Empty)
                 {
-                    sqlParameters[8] = new SqlParameter("@picExtension", DBNull.Value);
+                    sqlParameters[9] = new SqlParameter("@picExtension", DBNull.Value);
                 }
                 else
                 {
-                    sqlParameters[8] = new SqlParameter("@picExtension", enContact.picExtension);
+                    sqlParameters[9] = new SqlParameter("@picExtension", enContact.picExtension);
                 }
 
                 return dbWrapper.Insert(sqlSentence, sqlParameters);
@@ -116,20 +117,22 @@ namespace DAO.Contacts
                 sqlSentence += "UPDATE contacts SET ";
                 sqlSentence += "contacts.firstName = @firstName, ";
                 sqlSentence += "contacts.lastName = @lastName, ";
+                sqlSentence += "contacts.genre = @genre, ";
                 sqlSentence += "contacts.email = @email, ";
                 sqlSentence += "contacts.mobileNumber = @mobileNumber, ";
                 sqlSentence += "contacts.landlineNumber = @landlineNumber ";
                 sqlSentence += "WHERE contacts.memberId = @memberId ";
                 sqlSentence += "AND contacts.id = @contactId ";
 
-                sqlParameters = new SqlParameter[7];
+                sqlParameters = new SqlParameter[8];
                 sqlParameters[0] = new SqlParameter("@firstName", enContact.firstName);
                 sqlParameters[1] = new SqlParameter("@lastName", enContact.lastName);
-                sqlParameters[2] = new SqlParameter("@email", enContact.email);
-                sqlParameters[3] = new SqlParameter("@mobileNumber", enContact.mobileNumber);
-                sqlParameters[4] = new SqlParameter("@landlineNumber", enContact.landlineNumber);
-                sqlParameters[5] = new SqlParameter("@memberId", memberInfo.id);
-                sqlParameters[6] = new SqlParameter("@contactId", enContact.id);
+                sqlParameters[2] = new SqlParameter("@genre", enContact.genre.ToUpper());
+                sqlParameters[3] = new SqlParameter("@email", enContact.email);
+                sqlParameters[4] = new SqlParameter("@mobileNumber", enContact.mobileNumber);
+                sqlParameters[5] = new SqlParameter("@landlineNumber", enContact.landlineNumber);
+                sqlParameters[6] = new SqlParameter("@memberId", memberInfo.id);
+                sqlParameters[7] = new SqlParameter("@contactId", enContact.id);
 
                 dbWrapper.UpdateDelete(sqlSentence, sqlParameters);
             }
@@ -259,6 +262,7 @@ namespace DAO.Contacts
                 enContact.memberId = (int)data.Rows[0]["memberId"];
                 enContact.firstName = (string)data.Rows[0]["firstName"];
                 enContact.lastName = (string)data.Rows[0]["lastName"];
+                enContact.genre = (string)data.Rows[0]["genre"];
                 enContact.email = data.Rows[0]["email"] is DBNull ? string.Empty : (string)data.Rows[0]["email"];
                 enContact.mobileNumber = data.Rows[0]["mobileNumber"] is DBNull ? string.Empty : (string)data.Rows[0]["mobileNumber"];
                 enContact.landlineNumber = data.Rows[0]["landlineNumber"] is DBNull ? string.Empty : (string)data.Rows[0]["landlineNumber"];
@@ -281,6 +285,7 @@ namespace DAO.Contacts
                     enContact.memberId = (int)data.Rows[index]["memberId"];
                     enContact.firstName = (string)data.Rows[index]["firstName"];
                     enContact.lastName = (string)data.Rows[index]["lastName"];
+                    enContact.genre = (string)data.Rows[index]["genre"];
                     enContact.email = data.Rows[index]["email"] is DBNull ? string.Empty : (string)data.Rows[index]["email"];
                     enContact.mobileNumber = data.Rows[index]["mobileNumber"] is DBNull ? string.Empty : (string)data.Rows[index]["mobileNumber"];
                     enContact.landlineNumber = data.Rows[index]["landlineNumber"] is DBNull ? string.Empty : (string)data.Rows[index]["landlineNumber"];
