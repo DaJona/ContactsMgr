@@ -2,9 +2,9 @@
 
 <h3><asp:Literal runat="server" Text="<%$ Resources:Resource, Menu %>"></asp:Literal></h3>
 <ul class="nav nav-pills nav-stacked">
-    <li id="memberPreferencesItem"><asp:LinkButton ID="lnkAccount" runat="server" Text="<%$ Resources:Resource, InformacionCuenta %>" OnClick="lnkAccount_Click"></asp:LinkButton></li>
-    <li id="passwordPreferencesItem"><asp:LinkButton ID="lnkPassword" runat="server" Text="<%$ Resources:Resource, CambiarContrasena %>" OnClick="lnkPassword_Click"></asp:LinkButton></li>
-    <li id="languagePreferencesItem"><asp:LinkButton ID="lnkLanguage" runat="server" Text="<%$ Resources:Resource, PreferenciaIdioma %>"></asp:LinkButton></li>
+    <li id="memberPreferencesItem"><asp:LinkButton ID="lnkAccount" runat="server" Text="<%$ Resources:Resource, InformacionCuenta %>" CausesValidation="false" OnClick="lnkAccount_Click"></asp:LinkButton></li>
+    <li id="passwordPreferencesItem"><asp:LinkButton ID="lnkPassword" runat="server" Text="<%$ Resources:Resource, CambiarContrasena %>" CausesValidation="false" OnClick="lnkPassword_Click"></asp:LinkButton></li>
+    <li id="languagePreferencesItem"><asp:LinkButton ID="lnkLanguage" runat="server" Text="<%$ Resources:Resource, PreferenciaIdioma %>" CausesValidation="false"></asp:LinkButton></li>
 </ul>
 
 <input id="hiddenActiveItem" runat="server" type="hidden" />
