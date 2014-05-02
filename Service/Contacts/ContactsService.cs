@@ -2,6 +2,7 @@
 using DTO.System;
 using Entity.Contacts;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Utilities;
@@ -141,6 +142,21 @@ namespace Service.Contacts
             {
                 deleteContacPics(contactId);
                 contactsDAO.deleteContact(contactId);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void deleteContacts(ArrayList contactsIdToDelete)
+        {
+            try
+            {
+                foreach (int contactId in contactsIdToDelete)
+                {
+                    deleteContact(contactId);
+                }                
             }
             catch (Exception ex)
             {

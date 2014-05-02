@@ -153,6 +153,9 @@
   <data name="ConfirmarEliminarContacto" xml:space="preserve">
     <value>¿Está seguro que desea eliminar este contacto?</value>
   </data>
+  <data name="ConfirmarEliminarContactosSeleccionados" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar los contactos seleccionados?</value>
+  </data>
   <data name="Contrasena" xml:space="preserve">
     <value>Contraseña</value>
   </data>
@@ -177,8 +180,14 @@
   <data name="EliminarContacto" xml:space="preserve">
     <value>Eliminar Contacto</value>
   </data>
+  <data name="EliminarContactosSeleccionados" xml:space="preserve">
+    <value>Eliminar Contactos seleccionados</value>
+  </data>
   <data name="EliminarFotoContacto" xml:space="preserve">
     <value>Eliminar foto del Contacto</value>
+  </data>
+  <data name="EliminarSeleccionados" xml:space="preserve">
+    <value>Eliminar seleccionados</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Correo Electrónico</value>
@@ -291,6 +300,9 @@
   <data name="NumeroTelefono" xml:space="preserve">
     <value>Número Fijo</value>
   </data>
+  <data name="OpcionesMasivas" xml:space="preserve">
+    <value>Opciones masivas</value>
+  </data>
   <data name="PreferenciaIdioma" xml:space="preserve">
     <value>Preferencia de Idioma</value>
   </data>
@@ -302,6 +314,12 @@
   </data>
   <data name="RayosExclamacion" xml:space="preserve">
     <value>¡Rayos!</value>
+  </data>
+  <data name="RegistrosEncontrados" xml:space="preserve">
+    <value>Registros encontrados</value>
+  </data>
+  <data name="SeleccioneOpcionesMasivas" xml:space="preserve">
+    <value>Seleccione uno o varios registros para ver las opciones masivas disponibles</value>
   </data>
   <data name="Usuario" xml:space="preserve">
     <value>Usuario</value>

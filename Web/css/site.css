@@ -20,13 +20,16 @@ div.btnContainer .btn {
     content: "*";
 }
 
-div.well ul.list-inline {
+div.well ul.list-inline,
+div.panel ul.list-inline {
 	margin: 0;
 }
-div.well ul.list-inline li {
+div.well ul.list-inline li,
+div.panel ul.list-inline li {
 	border-right: 1px gainsboro solid;
 }
-div.well ul.list-inline li:last-child {
+div.well ul.list-inline li:last-child,
+div.panel ul.list-inline li:last-child {
 	border: none;
 }
 
