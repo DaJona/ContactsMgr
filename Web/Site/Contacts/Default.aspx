@@ -51,6 +51,7 @@
                             </asp:TemplateField>
 
                             <asp:TemplateField>
+                                <HeaderStyle CssClass="action" />
                                 <ItemTemplate>
                                     <asp:LinkButton ID="lnkEdit" runat="server" ToolTip="<%$ Resources:Resource, ClicEditar %>" 
                                         CommandName="editContact"
@@ -58,7 +59,6 @@
                                         <span class="glyphicon glyphicon-edit"></span>
                                     </asp:LinkButton>
                                 </ItemTemplate>
-                                <HeaderStyle CssClass="action" />
                             </asp:TemplateField>
 
                             <asp:TemplateField>
@@ -79,6 +79,7 @@
                             <asp:BoundField HeaderText="<%$ Resources:Resource, NumeroTelefono%>" DataField="landlineNumber" HtmlEncode="false" />
 
                             <asp:TemplateField HeaderText="<%$ Resources:Resource, Estado%>">
+                                <ItemStyle CssClass="action" Width="100px" />
                                 <ItemTemplate>
                                     <asp:LinkButton ID="lnkChangeStatus" runat="server" Text='<%# getStatusText((bool)Eval("isActive")) %>' ToolTip="<%$ Resources:Resource, ClicCambiar %>" 
                                         CssClass='<%# ((bool)Eval("isActive")) ? "btn btn-success btn-sm" : "btn btn-warning btn-sm" %>'

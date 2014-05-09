@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿function pageLoad(sender, args) { 
     // All input type file, bootstrap stilized
     $("input[type=file]").bootstrapFileInput();
 
@@ -7,4 +7,4 @@
         show: false,
         keyboard: false
     })
-});
+}

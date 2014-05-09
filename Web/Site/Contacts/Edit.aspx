@@ -6,16 +6,20 @@
 
     <div class="row">
         <div class="col-md-3 text-center">
-            <div class="formContactPic">
-                <asp:Image ID="imgContactPic" runat="server" ImageUrl="~/img/contactsPics/no-pic.jpg" onerror="loadDefaultCotactPic(this)" />
-            </div>
+            <asp:UpdatePanel runat="server">
+                <ContentTemplate>
+                    <div class="formContactPic">
+                        <asp:Image ID="imgContactPic" runat="server" ImageUrl="~/img/contactsPics/no-pic.jpg" onerror="loadDefaultCotactPic(this)" />
+                    </div>
 
-            <div>
-                <asp:FileUpload ID="uplContactPic" runat="server" title="<%$ Resources:Resource, CambiarFotoContacto %>" data-filename-placement="inside" />
-            </div>
-            <div class="checkboxContainer">
-                <asp:CheckBox ID="chkDeletePic" runat="server" Text="<%$ Resources:Resource, EliminarFotoContacto %>" Visible="false" AutoPostBack="true" OnCheckedChanged="chkDeletePic_CheckedChanged" />
-            </div>
+                    <div>
+                        <asp:FileUpload ID="uplContactPic" runat="server" title="<%$ Resources:Resource, CambiarFotoContacto %>" data-filename-placement="inside" />
+                    </div>
+                    <div class="checkboxContainer">
+                        <asp:CheckBox ID="chkDeletePic" runat="server" Text="<%$ Resources:Resource, EliminarFotoContacto %>" Visible="false" AutoPostBack="true" OnCheckedChanged="chkDeletePic_CheckedChanged" />
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>            
         </div>
         <div class="col-md-9">
             <div class="form-group">

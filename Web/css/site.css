@@ -44,8 +44,13 @@ a:hover {
     text-decoration: none;
 }
 
-table tr th.action {
+table tr th {
+    text-align: center;
+}
+table tr th.action,
+table tr td.action {
     width: 10px;
+    text-align: center;
 }
 
 div.formContactPic {
