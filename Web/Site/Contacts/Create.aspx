@@ -43,6 +43,10 @@
                 <asp:Label runat="server" AssociatedControlID="txtLandlineNumber" Text="<%$ Resources:Resource, NumeroTelefono%>"></asp:Label>
                 <asp:TextBox ID="txtLandlineNumber" runat="server" CssClass="form-control" MaxLength="20"></asp:TextBox>
             </div>
+            <div class="form-group">
+                <asp:Label runat="server" AssociatedControlID="txtComments" Text="<%$ Resources:Resource, Comentarios%>"></asp:Label>
+                <asp:TextBox ID="txtComments" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="5" onkeypress="countCharacters()"></asp:TextBox>
+            </div>
         </div>
     </div>
 
@@ -51,4 +55,13 @@
         <asp:Button ID="cmdCancel" runat="server" Text="<%$ Resources:Resource, Cancelar %>" CssClass="btn btn-default btn-lg" CausesValidation="false" OnClick="cmdCancel_Click" />
         <wsc:CMCustomValidator ID="cvCreateContact" runat="server" />
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#<%= this.txtComments.ClientID%>").jqEasyCounter({
+                'maxChars': 200,
+                'maxCharsWarning': 180
+            });
+        });
+    </script>
 </asp:Content>

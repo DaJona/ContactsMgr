@@ -49,6 +49,7 @@ namespace Web.Site.Contacts
                 newContact.mobileNumber = txtMobileNumber.Text;
                 newContact.landlineNumber = txtLandlineNumber.Text;
                 newContact.picExtension = fileExtension;
+                newContact.comments = txtComments.Text;
                 
                 result = contactsService.createContact(newContact);
                 if (result.code == TransactionResult.transactionResultCode.Success)

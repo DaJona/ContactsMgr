@@ -53,6 +53,10 @@
                 <asp:Label runat="server" AssociatedControlID="txtLandlineNumber" Text="<%$ Resources:Resource, NumeroTelefono%>"></asp:Label>
                 <asp:TextBox ID="txtLandlineNumber" runat="server" CssClass="form-control" MaxLength="20"></asp:TextBox>
             </div>
+            <div class="form-group">
+                <asp:Label runat="server" AssociatedControlID="txtComments" Text="<%$ Resources:Resource, Comentarios%>"></asp:Label>
+                <asp:TextBox ID="txtComments" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="5"></asp:TextBox>
+            </div>
         </div>
     </div>    
 
@@ -63,6 +67,13 @@
     </div>
 
     <script type="text/javascript">
+        $(document).ready(function () {
+            $("#<%= this.txtComments.ClientID%>").jqEasyCounter({
+                'maxChars': 200,
+                'maxCharsWarning': 180
+            });
+        });
+
         function loadDefaultCotactPic(imgObj) {
             $(imgObj).attr('src', '<%= ResolveUrl("~/img/contactsPics/no-pic.jpg")%>');
         }

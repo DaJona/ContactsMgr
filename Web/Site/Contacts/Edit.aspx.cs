@@ -42,6 +42,7 @@ namespace Web.Site.Contacts
                 txtEmail.Text = existingContact.email;
                 txtMobileNumber.Text = existingContact.mobileNumber;
                 txtLandlineNumber.Text = existingContact.landlineNumber;
+                txtComments.Text = existingContact.comments;
 
                 // If the contact has an extension, means that has a pic
                 if (existingContact.picExtension != string.Empty)
@@ -59,6 +60,7 @@ namespace Web.Site.Contacts
                     txtEmail.Enabled = false;
                     txtMobileNumber.Enabled = false;
                     txtLandlineNumber.Enabled = false;
+                    txtComments.Enabled = false;
                     cmdEditContact.Visible = false;
                     uplContactPic.Visible = false;
                     chkDeletePic.Visible = false;
@@ -102,6 +104,7 @@ namespace Web.Site.Contacts
                 editedContact.mobileNumber = txtMobileNumber.Text;
                 editedContact.landlineNumber = txtLandlineNumber.Text;
                 editedContact.picExtension = fileExtension;
+                editedContact.comments = txtComments.Text;
 
                 result = contactsService.editContact(editedContact, chkDeletePic.Checked);
                 if (result.code == TransactionResult.transactionResultCode.Success)

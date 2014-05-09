@@ -14,6 +14,7 @@ namespace Entity.Contacts
         public string landlineNumber { get; set; }
         public bool isActive { get; set; }
         public string picExtension { get; set; }
+        public string comments { get; set; }
         public DateTime createdAt { get; set; }
     }
 }

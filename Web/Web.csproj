@@ -93,6 +93,7 @@
     <Content Include="img\contactsPics\no-pic.jpg" />
     <Content Include="js\bootstrap.file-input.js" />
     <Content Include="js\bootstrap.js" />
+    <Content Include="js\jqEasyCharCounter.js" />
     <Content Include="js\jquery-1.7.2.js" />
     <Content Include="js\site.js" />
     <Content Include="packages.config" />

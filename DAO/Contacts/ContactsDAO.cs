@@ -76,10 +76,10 @@ namespace DAO.Contacts
 
             try
             {
-                sqlSentence += "INSERT INTO contacts (memberId, firstName, lastName, genre, email, mobileNumber, landlineNumber, isActive, picExtension, createdAt) ";
-                sqlSentence += "VALUES (@memberId, @firstName, @lastName, @genre, @email, @mobileNumber, @landlineNumber, @isActive, @picExtension, @createdAt) ";
+                sqlSentence += "INSERT INTO contacts (memberId, firstName, lastName, genre, email, mobileNumber, landlineNumber, isActive, picExtension, comments, createdAt) ";
+                sqlSentence += "VALUES (@memberId, @firstName, @lastName, @genre, @email, @mobileNumber, @landlineNumber, @isActive, @picExtension, @comments, @createdAt) ";
 
-                sqlParameters = new SqlParameter[10];
+                sqlParameters = new SqlParameter[11];
                 sqlParameters[0] = new SqlParameter("@memberId", memberInfo.id);
                 sqlParameters[1] = new SqlParameter("@firstName", enContact.firstName);
                 sqlParameters[2] = new SqlParameter("@lastName", enContact.lastName);
@@ -97,6 +97,15 @@ namespace DAO.Contacts
                 else
                 {
                     sqlParameters[9] = new SqlParameter("@picExtension", enContact.picExtension);
+                }
+
+                if (enContact.comments == string.Empty)
+                {
+                    sqlParameters[10] = new SqlParameter("@comments", DBNull.Value);
+                }
+                else
+                {
+                    sqlParameters[10] = new SqlParameter("@comments", enContact.comments);
                 }
 
                 return dbWrapper.Insert(sqlSentence, sqlParameters);
@@ -120,11 +129,12 @@ namespace DAO.Contacts
                 sqlSentence += "contacts.genre = @genre, ";
                 sqlSentence += "contacts.email = @email, ";
                 sqlSentence += "contacts.mobileNumber = @mobileNumber, ";
-                sqlSentence += "contacts.landlineNumber = @landlineNumber ";
+                sqlSentence += "contacts.landlineNumber = @landlineNumber, ";
+                sqlSentence += "contacts.comments = @comments ";
                 sqlSentence += "WHERE contacts.memberId = @memberId ";
                 sqlSentence += "AND contacts.id = @contactId ";
 
-                sqlParameters = new SqlParameter[8];
+                sqlParameters = new SqlParameter[9];
                 sqlParameters[0] = new SqlParameter("@firstName", enContact.firstName);
                 sqlParameters[1] = new SqlParameter("@lastName", enContact.lastName);
                 sqlParameters[2] = new SqlParameter("@genre", enContact.genre.ToUpper());
@@ -133,6 +143,15 @@ namespace DAO.Contacts
                 sqlParameters[5] = new SqlParameter("@landlineNumber", enContact.landlineNumber);
                 sqlParameters[6] = new SqlParameter("@memberId", memberInfo.id);
                 sqlParameters[7] = new SqlParameter("@contactId", enContact.id);
+
+                if (enContact.comments == string.Empty)
+                {
+                    sqlParameters[8] = new SqlParameter("@comments", DBNull.Value);
+                }
+                else
+                {
+                    sqlParameters[8] = new SqlParameter("@comments", enContact.comments);
+                }
 
                 dbWrapper.UpdateDelete(sqlSentence, sqlParameters);
             }
@@ -268,6 +287,7 @@ namespace DAO.Contacts
                 enContact.landlineNumber = data.Rows[0]["landlineNumber"] is DBNull ? string.Empty : (string)data.Rows[0]["landlineNumber"];
                 enContact.isActive = (bool)data.Rows[0]["isActive"];
                 enContact.picExtension = data.Rows[0]["picExtension"] is DBNull ? string.Empty : (string)data.Rows[0]["picExtension"];
+                enContact.comments = data.Rows[0]["comments"] is DBNull ? string.Empty : (string)data.Rows[0]["comments"];
                 enContact.createdAt = (DateTime)data.Rows[0]["createdAt"];
 
                 convertedDatatable = enContact;
@@ -291,6 +311,7 @@ namespace DAO.Contacts
                     enContact.landlineNumber = data.Rows[index]["landlineNumber"] is DBNull ? string.Empty : (string)data.Rows[index]["landlineNumber"];
                     enContact.isActive = (bool)data.Rows[index]["isActive"];
                     enContact.picExtension = data.Rows[index]["picExtension"] is DBNull ? string.Empty : (string)data.Rows[index]["picExtension"];
+                    enContact.comments = data.Rows[index]["comments"] is DBNull ? string.Empty : (string)data.Rows[index]["comments"];
                     enContact.createdAt = (DateTime)data.Rows[index]["createdAt"];
 
                     listContacts.Add(enContact);
