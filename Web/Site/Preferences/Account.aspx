@@ -13,7 +13,7 @@
 
     <div class="form-group">
         <asp:Label runat="server" AssociatedControlID="txtEmail" Text="<%$ Resources:Resource, Email %>"></asp:Label>
-        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" type="email" MaxLength="30" Enabled="false"></asp:TextBox>
+        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" type="email" MaxLength="50" Enabled="false"></asp:TextBox>
     </div>
     <div class="form-group">
         <asp:Label runat="server" AssociatedControlID="txtRealName" Text="<%$ Resources:Resource, NombreCompleto %>"></asp:Label>

@@ -237,6 +237,9 @@
   <data name="ErrorGenreReq" xml:space="preserve">
     <value>Debe indicar el género</value>
   </data>
+  <data name="ErrorIdiomaReq" xml:space="preserve">
+    <value>Debe indicar el idioma</value>
+  </data>
   <data name="ErrorLongitudSuperada" xml:space="preserve">
     <value>El campo '{0}' no puede superar los {1} caracteres</value>
   </data>

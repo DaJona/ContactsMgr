@@ -31,7 +31,7 @@
             </div>
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="txtEmail" Text="<%$ Resources:Resource, Email %>" CssClass="requiredField"></asp:Label>
-                <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" type="email" MaxLength="30"></asp:TextBox>
+                <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" type="email" MaxLength="50"></asp:TextBox>
                 <wsc:CMRequiredFieldValidator ID="reqEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="<%$ Resources:Resource, ErrorEmailReq %>" />
             </div>
             <div class="form-group">

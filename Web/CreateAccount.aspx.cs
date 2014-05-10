@@ -46,10 +46,10 @@ namespace Web
                     }
                     else
                     {
-                        showError(HttpContext.GetGlobalResourceObject("Resource", result.failureReason).ToString());
+                        showError(result.failureReason);
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     showError(HttpContext.GetGlobalResourceObject("Resource", "ErrorGeneral").ToString());
                 }

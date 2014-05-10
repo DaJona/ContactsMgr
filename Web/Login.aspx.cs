@@ -85,10 +85,5 @@ namespace Web
             cvLogin.IsValid = false;
             cvLogin.ErrorMessage = message;
         }
-
-        protected void ddlLang_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
