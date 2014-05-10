@@ -89,7 +89,7 @@ namespace Web.Site.Contacts
                     fileExtension = System.IO.Path.GetExtension(uplContactPic.FileName);
                     fileSizeInBytes = uplContactPic.PostedFile.ContentLength;
 
-                    if (!FilesValidations.isValidContactPic(fileExtension, fileSizeInBytes))
+                    if (!Validations.isValidContactPic(fileExtension, fileSizeInBytes))
                     {
                         showError(HttpContext.GetGlobalResourceObject("Resource", "ErrorFotoContactoInvalida").ToString());
                         return;

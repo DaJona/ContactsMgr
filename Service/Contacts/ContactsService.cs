@@ -98,8 +98,7 @@ namespace Service.Contacts
                 // Validate email format
                 if (entityToValidate.email != string.Empty)
                 {
-                    string emailPattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$;";
-                    if (!Regex.IsMatch(entityToValidate.email.Trim(), emailPattern))
+                    if (!Validations.isValidEmailFormat(entityToValidate.email))
                     {
                         result.code = TransactionResult.transactionResultCode.Failed;
                         result.failureReason = String.Format(formatError, resourceManager.GetString("Email", cultureInfo));
