@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Web.Login" Culture="auto" UICulture="auto" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Web.Login" %>
+<%@ Register Src="~/Site/WUC/LanguagesList.ascx" TagName="LanguagesList" TagPrefix="wuc" %>
 
 <!DOCTYPE html>
 
@@ -32,6 +33,10 @@
             <div class="btnContainer">
                 <wsc:CMButton ID="btnLogin" runat="server" Text="<%$ Resources:Resource, IniciarSesion %>" CssClass="btn-lg" OnClientClick="javascript:pepe();" OnClick="btnLogin_Click" />
                 <wsc:CMCustomValidator  ID="cvLogin" runat="server" />
+            </div>
+
+            <div class="text-right">
+                <wuc:LanguagesList ID="ddlPageLanguage" runat="server" />
             </div>
 
             <input id="timeZoneOffset" runat="server" type="hidden" />

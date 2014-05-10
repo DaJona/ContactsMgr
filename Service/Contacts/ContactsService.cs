@@ -4,7 +4,10 @@ using Entity.Contacts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
+using System.Reflection;
+using System.Resources;
 using Utilities;
 
 namespace Service.Contacts
@@ -14,11 +17,15 @@ namespace Service.Contacts
         public static Func<string, string> ServerMapPath;
         private SessionMemberInfo memberInfo;
         private ContactsDAO contactsDAO;
+        private ResourceManager resourceManager;
+        private CultureInfo cultureInfo;
 
         public ContactsService(SessionMemberInfo sessionMemberInfo)
         {
             contactsDAO = new ContactsDAO(sessionMemberInfo);
             memberInfo = sessionMemberInfo;
+            resourceManager = new ResourceManager("Resources.Resource", Assembly.Load("App_GlobalResources"));
+            cultureInfo = new CultureInfo(memberInfo.lang, false);
         }
 
         public List<Contact> getContacts()
@@ -91,8 +98,6 @@ namespace Service.Contacts
             }
             catch (Exception ex)
             {
-                result.code = TransactionResult.transactionResultCode.Failed;
-                result.failureReason = "ErrorGeneral";
                 throw ex;
             }
 
@@ -128,8 +133,6 @@ namespace Service.Contacts
             }
             catch (Exception ex)
             {
-                result.code = TransactionResult.transactionResultCode.Failed;
-                result.failureReason = "ErrorGeneral";
                 throw ex;
             }
 
@@ -164,7 +167,7 @@ namespace Service.Contacts
             }
         }
 
-        public void deleteContacPics(int contactId)
+        private void deleteContacPics(int contactId)
         {
             string[] contactPicsList = Directory.GetFiles(ServerMapPath(SitePaths.contactsPics(memberInfo.id)), Encoding.sha1(contactId.ToString()) + "*");
             foreach (string contactExistingPic in contactPicsList)

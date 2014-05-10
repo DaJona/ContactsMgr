@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using DTO.System;
+using Entity.Members;
+using Service.Members;
+using System;
+using System.Globalization;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using Entity.Members;
-using DTO.System;
-using Service.Members;
 
 namespace Web
 {
@@ -17,13 +16,20 @@ namespace Web
             txtRealName.Focus();
         }
 
+        protected override void InitializeCulture()
+        {
+            string lang = Request["ddlPageLanguage"] == null ? "es-co" : Request["ddlPageLanguage"];
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(lang);
+        }
+
         protected void btnCreateAccount_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
             {
                 try
                 {
-                    MembersService membersService = new MembersService();
+                    MembersService membersService = new MembersService(ddlPageLanguage.SelectedValue);
                     Member enMember = new Member();
                     TransactionResult result;
 

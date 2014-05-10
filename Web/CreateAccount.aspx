@@ -54,6 +54,10 @@
                 <wsc:CMButton ID="btnCreateAccount" runat="server" Text="<%$ Resources:Resource, CrearCuenta %>" CssClass="btn-lg" OnClick="btnCreateAccount_Click" />
                 <wsc:CMCustomValidator ID="cvCreateAccount" runat="server" />
             </div>
+
+            <div class="text-right">
+                <wuc:LanguagesList ID="ddlPageLanguage" runat="server" />
+            </div>
         </form>
 
         <script type="text/javascript" lang="javascript" src="<%= ResolveUrl("~/js/jquery-1.7.2.js")%>"></script>

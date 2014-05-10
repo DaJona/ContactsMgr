@@ -73,7 +73,7 @@ namespace Web.Site.Contacts
                 }
                 else
                 {
-                    showError(HttpContext.GetGlobalResourceObject("Resource", result.failureReason).ToString());
+                    showError(result.failureReason);
                 }
             }
             catch (Exception)

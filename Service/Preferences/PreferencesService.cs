@@ -4,6 +4,9 @@ using DTO.Preferences;
 using DTO.System;
 using Entity.Members;
 using System;
+using System.Globalization;
+using System.Reflection;
+using System.Resources;
 using Utilities;
 
 namespace Service.Preferences
@@ -12,11 +15,15 @@ namespace Service.Preferences
     {
         private SessionMemberInfo memberInfo;
         private PreferencesDAO preferencesDAO;
+        private ResourceManager resourceManager;
+        private CultureInfo cultureInfo;
 
         public PreferencesService(SessionMemberInfo sessionMemberInfo)
         {
             preferencesDAO = new PreferencesDAO(sessionMemberInfo);
             memberInfo = sessionMemberInfo;
+            resourceManager = new ResourceManager("Resources.Resource", Assembly.Load("App_GlobalResources"));
+            cultureInfo = new CultureInfo(memberInfo.lang, false);
         }
 
         public MemberPreferencesDTO getMemberPreferences()
@@ -29,7 +36,6 @@ namespace Service.Preferences
             }
             catch (Exception ex)
             {
-                memberPreferences = null;
                 throw ex;
             }
 
@@ -46,7 +52,6 @@ namespace Service.Preferences
             }
             catch (Exception ex)
             {
-                passwordPreferences = null;
                 throw ex;
             }
 
@@ -63,7 +68,6 @@ namespace Service.Preferences
             }
             catch (Exception ex)
             {
-                languagePreferences = null;
                 throw ex;
             }
 

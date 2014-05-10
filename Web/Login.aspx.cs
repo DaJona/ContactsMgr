@@ -1,9 +1,11 @@
-﻿using System;
-using System.Web.UI;
+﻿using DTO.System;
 using Entity.Members;
 using Service.Members;
-using DTO.System;
+using System;
+using System.Globalization;
+using System.Threading;
 using System.Web;
+using System.Web.UI;
 using Utilities;
 
 namespace Web
@@ -21,6 +23,13 @@ namespace Web
             }
 
             txtEmail.Focus();
+        }
+
+        protected override void InitializeCulture()
+        {
+            string lang = Request["ddlPageLanguage"] == null ? "es-co" : Request["ddlPageLanguage"];
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(lang);
         }
 
         #region Properties
@@ -45,7 +54,7 @@ namespace Web
             {
                 try
                 {
-                    MembersService membersService = new MembersService();
+                    MembersService membersService = new MembersService(ddlPageLanguage.SelectedValue);
                     TransactionResult result;
                     
                     result = membersService.login(txtEmail.Text, txtPass.Text);
@@ -61,7 +70,7 @@ namespace Web
                     }
                     else
                     {
-                        showError(HttpContext.GetGlobalResourceObject("Resource", result.failureReason).ToString());
+                        showError(result.failureReason);
                     }
                 }
                 catch (Exception)
@@ -75,6 +84,11 @@ namespace Web
         {
             cvLogin.IsValid = false;
             cvLogin.ErrorMessage = message;
+        }
+
+        protected void ddlLang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

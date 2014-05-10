@@ -1,7 +1,10 @@
-﻿using DTO.System;
+﻿using DAO.Members;
+using DTO.System;
 using Entity.Members;
-using DAO.Members;
 using System;
+using System.Globalization;
+using System.Reflection;
+using System.Resources;
 using Utilities;
 
 namespace Service.Members
@@ -9,10 +12,14 @@ namespace Service.Members
     public class MembersService
     {
         private MembersDAO membersDao;
+        private ResourceManager resourceManager;
+        private CultureInfo cultureInfo;
 
-        public MembersService()
+        public MembersService(string lang)
         {
             membersDao = new MembersDAO();
+            resourceManager = new ResourceManager("Resources.Resource", Assembly.Load("App_GlobalResources"));
+            cultureInfo = new CultureInfo(lang, false);
         }
 
         public TransactionResult login(string memberUser, string memberPassword)
@@ -32,7 +39,7 @@ namespace Service.Members
                 else
                 {
                     result.code = TransactionResult.transactionResultCode.Failed;
-                    result.failureReason = "ErrorUsuarioContrasenaIncorrectos";
+                    result.failureReason = resourceManager.GetString("ErrorUsuarioContrasenaIncorrectos", cultureInfo);
                 }
             }
             catch (Exception ex)
@@ -54,7 +61,7 @@ namespace Service.Members
                 if (existingMember != null)
                 {
                     result.code = TransactionResult.transactionResultCode.Failed;
-                    result.failureReason = "ErrorEmailYaExiste";
+                    result.failureReason = resourceManager.GetString("ErrorEmailYaExiste", cultureInfo);
                     return result;
                 }
 

@@ -76,6 +76,15 @@ namespace Web {
         protected global::WSC.CMCustomValidator cvLogin;
         
         /// <summary>
+        /// ddlPageLanguage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Web.Site.WUC.LanguagesList ddlPageLanguage;
+        
+        /// <summary>
         /// timeZoneOffset control.
         /// </summary>
         /// <remarks>
