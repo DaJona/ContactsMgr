@@ -225,6 +225,9 @@
   <data name="ErrorEmailYaExiste" xml:space="preserve">
     <value>El Correo Electrónico indicado ya existe</value>
   </data>
+  <data name="ErrorFormatoIncorrecto" xml:space="preserve">
+    <value>El campo '{0}' no tiene el formato correcto</value>
+  </data>
   <data name="ErrorFotoContactoInvalida" xml:space="preserve">
     <value>El archivo seleccionado no es válido. Solo se admiten imágenes .jpg, .png o .bmp y que no superen los 2Mb de tamaño</value>
   </data>
@@ -233,6 +236,9 @@
   </data>
   <data name="ErrorGenreReq" xml:space="preserve">
     <value>Debe indicar el género</value>
+  </data>
+  <data name="ErrorLongitudSuperada" xml:space="preserve">
+    <value>El campo '{0}' no puede superar los {1} caracteres</value>
   </data>
   <data name="ErrorNombreCompletoReq" xml:space="preserve">
     <value>Debe ingresar el Nombre Completo</value>
