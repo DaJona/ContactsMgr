@@ -1,0 +1,53 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Landing.master.cs" Inherits="Web.es.Landing" %>
+
+<!DOCTYPE html>
+
+<html lang="es">
+    <head runat="server">
+        <title></title>
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+        <link href="../css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+        <link href="../css/site.css" rel="stylesheet" type="text/css" media="all">
+    </head>
+    <body style="margin: 5px 20px;">
+        <form id="form1" runat="server">
+            <!-- Navbar -->
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!--<a class="navbar-brand" href="#">Brand</a>-->
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a href="<%= ResolveUrl("~/es/index")%>">Inicio</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="<%= ResolveUrl("~/Login")%>"><span class="glyphicon glyphicon-user"></span> Iniciar Sesión</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Navbar -->
+
+            <!-- Javascripts -->
+            <script type="text/javascript" lang="javascript" src="<%= ResolveUrl("~/js/jquery-1.7.2.js")%>"></script>
+            <script type="text/javascript" lang="javascript" src="<%= ResolveUrl("~/js/bootstrap.js")%>"></script>
+            <!-- Javascripts -->
+
+            <div id="mainContainer">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">        
+                </asp:ContentPlaceHolder>
+            </div>
+        </form>
+    </body>
+</html>

@@ -90,6 +90,7 @@
     <Content Include="css\bootstrap\bootstrap.css" />
     <Content Include="css\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="css\site.css" />
+    <Content Include="es\index.aspx" />
     <Content Include="img\contactsPics\no-pic.jpg" />
     <Content Include="js\bootstrap.file-input.js" />
     <Content Include="js\bootstrap.js" />
@@ -109,6 +110,7 @@
     <Content Include="Site\Preferences\Password.aspx" />
     <Content Include="Site\Site.Master" />
     <Content Include="Site\LeftSidebarSite.master" />
+    <Content Include="es\Landing.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -128,6 +130,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="es\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="es\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="es\Landing.Master.cs">
+      <DependentUpon>Landing.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="es\Landing.Master.designer.cs">
+      <DependentUpon>Landing.Master</DependentUpon>
+    </Compile>
     <Compile Include="SessionManager.cs" />
     <Compile Include="CreateAccount.aspx.cs">
       <DependentUpon>CreateAccount.aspx</DependentUpon>
