@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Web.Login" %>
 <%@ Register Src="~/Site/WUC/LanguagesList.ascx" TagName="LanguagesList" TagPrefix="wuc" %>
+<%@ Register Src="~/Site/WUC/ProgressModal.ascx" TagName="ProgressModal" TagPrefix="wuc" %>
 
 <!DOCTYPE html>
 
@@ -16,7 +17,7 @@
     <body>
         <h1><asp:Literal runat="server" Text="<%$ Resources:Resource, IniciarSesion %>"></asp:Literal></h1>
 
-        <form id="loginForm" runat="server" role="form">
+        <form id="loginForm" runat="server">
             <asp:ScriptManager runat="server" />
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
@@ -44,7 +45,9 @@
 
                     <input id="timeZoneOffset" runat="server" type="hidden" />
                 </ContentTemplate>
-            </asp:UpdatePanel>            
+            </asp:UpdatePanel>
+
+            <wuc:ProgressModal runat="server" />
         </form>
 
         <script type="text/javascript" lang="javascript" src="<%= ResolveUrl("~/js/jquery-1.7.2.js")%>"></script>

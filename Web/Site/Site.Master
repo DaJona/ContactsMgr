@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Web.Site.Site" %>
+<%@ Register Src="~/Site/WUC/ProgressModal.ascx" TagName="ProgressModal" TagPrefix="wuc" %>
 <%@ Register Src="~/Site/WUC/Footer.ascx" TagName="Footer" TagPrefix="wuc" %>
 
 <!DOCTYPE html>
@@ -16,7 +17,7 @@
     <body>
         <form id="form" runat="server">
             <!-- Navbar -->
-            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <nav class="navbar navbar-default navbar-fixed-top" style="z-index: 97;" role="navigation">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -54,11 +55,12 @@
             <script type="text/javascript" lang="javascript" src="<%= ResolveUrl("~/js/jqEasyCharCounter.js")%>"></script>
             <script type="text/javascript" lang="javascript" src="<%= ResolveUrl("~/js/site.js")%>"></script>
             <!-- Javascripts -->
-
+            
             <div id="mainContainer">
                 <ajaxToolkit:ToolkitScriptManager runat="server" EnablePartialRendering="true" />
                 <asp:ContentPlaceHolder ID="site" runat="server"></asp:ContentPlaceHolder>
             </div>
+            <wuc:ProgressModal runat="server" />
 
             <wuc:Footer ID="Footer" runat="server" />
         </form>

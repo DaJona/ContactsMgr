@@ -92,6 +92,7 @@
     <Content Include="css\site.css" />
     <Content Include="es\index.aspx" />
     <Content Include="img\contactsPics\no-pic.jpg" />
+    <Content Include="img\loading.gif" />
     <Content Include="js\bootstrap.file-input.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\jqEasyCharCounter.js" />
@@ -126,6 +127,7 @@
     <Content Include="Site\WUC\LanguagesList.ascx" />
     <Content Include="Site\WUC\NoData.ascx" />
     <Content Include="Site\WUC\PreferencesLeftSidebar.ascx" />
+    <Content Include="Site\WUC\ProgressModal.ascx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -263,6 +265,13 @@
     </Compile>
     <Compile Include="Site\WUC\PreferencesLeftSidebar.ascx.designer.cs">
       <DependentUpon>PreferencesLeftSidebar.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Site\WUC\ProgressModal.ascx.cs">
+      <DependentUpon>ProgressModal.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site\WUC\ProgressModal.ascx.designer.cs">
+      <DependentUpon>ProgressModal.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

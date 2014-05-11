@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateAccount.aspx.cs" Inherits="Web.CreateAccount" Culture="auto" UICulture="auto" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateAccount.aspx.cs" Inherits="Web.CreateAccount" %>
 <%@ Register Src="~/Site/WUC/LanguagesList.ascx" TagName="LanguagesList" TagPrefix="wuc" %>
 
 <!DOCTYPE html>

@@ -327,6 +327,9 @@
   <data name="PreferenciasActualizadas" xml:space="preserve">
     <value>Preferencias actualizadas exitosamente. Deberá cerrar sesión e ingresar nuevamente para visualizar los cambios</value>
   </data>
+  <data name="Procesando" xml:space="preserve">
+    <value>Procesando...</value>
+  </data>
   <data name="RayosExclamacion" xml:space="preserve">
     <value>¡Rayos!</value>
   </data>
