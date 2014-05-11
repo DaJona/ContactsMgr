@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Threading;
 using System.Web;
 using System.Web.UI;
+using Utilities;
 
 namespace Web
 {
@@ -42,7 +43,7 @@ namespace Web
                     result = membersService.createMember(enMember);
                     if (result.code == TransactionResult.transactionResultCode.Success)
                     {
-
+                        EMail.sendAccountActivationEmail();
                     }
                     else
                     {
