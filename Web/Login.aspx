@@ -21,7 +21,7 @@
 
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="txtEmail" Text="<%$ Resources:Resource, Usuario %>"></asp:Label>
-                <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" type="email"></asp:TextBox>
+                <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" type="email" placeholder="<%$ Resources:Resource, EmailPlaceholder %>"></asp:TextBox>
                 <wsc:CMRequiredFieldValidator ID="reqEmail" runat="server" ControlToValidate="txtEmail" ErrorMessage="<%$ Resources:Resource, ErrorUsuarioReq %>" />
             </div>
             <div class="form-group">

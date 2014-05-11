@@ -195,6 +195,9 @@
   <data name="Email" xml:space="preserve">
     <value>Correo Electrónico</value>
   </data>
+  <data name="EmailPlaceholder" xml:space="preserve">
+    <value>usuario@dominio.com</value>
+  </data>
   <data name="ErrorApellidosReq" xml:space="preserve">
     <value>Debe ingresar los Apellidos</value>
   </data>
