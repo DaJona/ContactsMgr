@@ -20,15 +20,14 @@ namespace DAO.Members
         {
             DataTable dt = new DataTable();
             string sqlSentence = "";
-            SqlParameter[] sqlParameters;
 
             try
             {
                 sqlSentence += "SELECT * FROM members ";
                 sqlSentence += "WHERE members.id = @memberId ";
 
-                sqlParameters = new SqlParameter[1];
-                sqlParameters[0] = new SqlParameter("@memberId", memberId);
+                List<SqlParameter> sqlParameters = new List<SqlParameter>();
+                sqlParameters.Add(new SqlParameter("@memberId", memberId));
 
                 dt = dbWrapper.FillDataTable(sqlSentence, sqlParameters);
             }
@@ -44,15 +43,14 @@ namespace DAO.Members
         {
             DataTable dt = new DataTable();
             string sqlSentence = "";
-            SqlParameter[] sqlParameters;
 
             try
             {
                 sqlSentence += "SELECT * FROM members ";
                 sqlSentence += "WHERE members.email = @email ";
 
-                sqlParameters = new SqlParameter[1];
-                sqlParameters[0] = new SqlParameter("@email", memberEmail);
+                List<SqlParameter> sqlParameters = new List<SqlParameter>();
+                sqlParameters.Add(new SqlParameter("@email", memberEmail));
 
                 dt = dbWrapper.FillDataTable(sqlSentence, sqlParameters);
             }
@@ -68,7 +66,6 @@ namespace DAO.Members
         {
             DataTable dt = new DataTable();
             string sqlSentence = "";
-            SqlParameter[] sqlParameters;
 
             try
             {
@@ -77,10 +74,10 @@ namespace DAO.Members
                 sqlSentence += "AND members.password = @password ";
                 sqlSentence += "AND members.isActive = @isActive ";
 
-                sqlParameters = new SqlParameter[3];
-                sqlParameters[0] = new SqlParameter("@email", memberUser);
-                sqlParameters[1] = new SqlParameter("@password", memberPassword);
-                sqlParameters[2] = new SqlParameter("@isActive", true);
+                List<SqlParameter> sqlParameters = new List<SqlParameter>();
+                sqlParameters.Add(new SqlParameter("@email", memberUser));
+                sqlParameters.Add(new SqlParameter("@password", memberPassword));
+                sqlParameters.Add(new SqlParameter("@isActive", true));
 
                 dt = dbWrapper.FillDataTable(sqlSentence, sqlParameters);
             }
@@ -95,21 +92,20 @@ namespace DAO.Members
         public void createMember(Member enMember)
         {
             string sqlSentence = "";
-            SqlParameter[] sqlParameters;
 
             try
             {
                 sqlSentence += "INSERT INTO members (realName, displayName, email, password, language, isActive, createdAt) ";
                 sqlSentence += "VALUES (@realName, @displayName, @email, @password, @language, @isActive, @createdAt) ";
 
-                sqlParameters = new SqlParameter[7];
-                sqlParameters[0] = new SqlParameter("@realName", enMember.realName);
-                sqlParameters[1] = new SqlParameter("@displayName", enMember.displayName);
-                sqlParameters[2] = new SqlParameter("@email", enMember.email);
-                sqlParameters[3] = new SqlParameter("@password", enMember.password);
-                sqlParameters[4] = new SqlParameter("@language", enMember.language);
-                sqlParameters[5] = new SqlParameter("@isActive", true);
-                sqlParameters[6] = new SqlParameter("@createdAt", DateTime.Now.ToUniversalTime().ToString("yyyyMMdd HH:mm:ss"));
+                List<SqlParameter> sqlParameters = new List<SqlParameter>();
+                sqlParameters.Add(new SqlParameter("@realName", enMember.realName));
+                sqlParameters.Add(new SqlParameter("@displayName", enMember.displayName));
+                sqlParameters.Add(new SqlParameter("@email", enMember.email));
+                sqlParameters.Add(new SqlParameter("@password", enMember.password));
+                sqlParameters.Add(new SqlParameter("@language", enMember.language));
+                sqlParameters.Add(new SqlParameter("@isActive", true));
+                sqlParameters.Add(new SqlParameter("@createdAt", DateTime.Now.ToUniversalTime().ToString("yyyyMMdd HH:mm:ss")));
 
                 dbWrapper.Insert(sqlSentence, sqlParameters);
             }

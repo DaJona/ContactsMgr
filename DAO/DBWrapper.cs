@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -24,7 +25,7 @@ namespace DAO
         /// </summary>
         /// <param name="sqlQuery">The query to make the insert.</param>
         /// <returns>The PK of the new row</returns>
-        public int Insert(string sqlQuery, SqlParameter[] sqlParameters)
+        public int Insert(string sqlQuery, List<SqlParameter> sqlParameters)
         {
             try
             {
@@ -49,9 +50,19 @@ namespace DAO
                         oSqlCmd.Connection = oSqlConn;
                         oSqlCmd.CommandText = sqlQuery;
 
-                        if (sqlParameters.Length > 0)
+                        if (sqlParameters != null)
                         {
-                            oSqlCmd.Parameters.AddRange(sqlParameters);
+                            if (sqlParameters.Count > 0)
+                            {
+                                SqlParameter[] parameters = new SqlParameter[sqlParameters.Count];
+
+                                for (int i = 0; i < sqlParameters.Count; i++)
+                                {
+                                    parameters[i] = new SqlParameter(sqlParameters[i].ParameterName, sqlParameters[i].Value);
+                                }
+
+                                oSqlCmd.Parameters.AddRange(parameters);
+                            }
                         }
 
                         return Convert.ToInt32(oSqlCmd.ExecuteScalar());
@@ -76,7 +87,7 @@ namespace DAO
         /// </summary>
         /// <param name="sqlQuery">The query to make the update or delete.</param>
         /// <returns>The number of rows affected</returns>
-        public int UpdateDelete(string sqlQuery, SqlParameter[] sqlParameters)
+        public int UpdateDelete(string sqlQuery, List<SqlParameter> sqlParameters)
         {
             try
             {
@@ -99,9 +110,19 @@ namespace DAO
                         oSqlCmd.Connection = oSqlConn;
                         oSqlCmd.CommandText = sqlQuery;
 
-                        if (sqlParameters.Length > 0)
+                        if (sqlParameters != null)
                         {
-                            oSqlCmd.Parameters.AddRange(sqlParameters);
+                            if (sqlParameters.Count > 0)
+                            {
+                                SqlParameter[] parameters = new SqlParameter[sqlParameters.Count];
+
+                                for (int i = 0; i < sqlParameters.Count; i++)
+                                {
+                                    parameters[i] = new SqlParameter(sqlParameters[i].ParameterName, sqlParameters[i].Value);
+                                }
+
+                                oSqlCmd.Parameters.AddRange(parameters);
+                            }
                         }
 
                         return oSqlCmd.ExecuteNonQuery();
@@ -127,7 +148,7 @@ namespace DAO
         /// <param name="sqlQuery">The query to make the insert.</param>
         /// <param name="transaction">The transaction used to perform the insert.</param>
         /// <returns>The PK of the new row</returns>
-        public int Insert(string sqlQuery, SqlParameter[] sqlParameters, IDbTransaction transaction)
+        public int Insert(string sqlQuery, List<SqlParameter> sqlParameters, IDbTransaction transaction)
         {
             try
             {
@@ -148,9 +169,19 @@ namespace DAO
                         oSqlCmd.Transaction = (SqlTransaction)transaction;
                         oSqlCmd.CommandText = sqlQuery;
 
-                        if (sqlParameters.Length > 0)
+                        if (sqlParameters != null)
                         {
-                            oSqlCmd.Parameters.AddRange(sqlParameters);
+                            if (sqlParameters.Count > 0)
+                            {
+                                SqlParameter[] parameters = new SqlParameter[sqlParameters.Count];
+
+                                for (int i = 0; i < sqlParameters.Count; i++)
+                                {
+                                    parameters[i] = new SqlParameter(sqlParameters[i].ParameterName, sqlParameters[i].Value);
+                                }
+
+                                oSqlCmd.Parameters.AddRange(parameters);
+                            }
                         }
 
                         return Convert.ToInt32(oSqlCmd.ExecuteScalar());
@@ -169,7 +200,7 @@ namespace DAO
         /// <param name="sqlQuery">The query to make the update or delete.</param>
         /// <param name="transaction">The transaction used to perform the update or delete.</param>
         /// <returns>The number of rows affected</returns>
-        public int UpdateDelete(string sqlQuery, SqlParameter[] sqlParameters, IDbTransaction transaction)
+        public int UpdateDelete(string sqlQuery, List<SqlParameter> sqlParameters, IDbTransaction transaction)
         {
             try
             {
@@ -188,9 +219,19 @@ namespace DAO
                         oSqlCmd.Transaction = (SqlTransaction)transaction;
                         oSqlCmd.CommandText = sqlQuery;
 
-                        if (sqlParameters.Length > 0)
+                        if (sqlParameters != null)
                         {
-                            oSqlCmd.Parameters.AddRange(sqlParameters);
+                            if (sqlParameters.Count > 0)
+                            {
+                                SqlParameter[] parameters = new SqlParameter[sqlParameters.Count];
+
+                                for (int i = 0; i < sqlParameters.Count; i++)
+                                {
+                                    parameters[i] = new SqlParameter(sqlParameters[i].ParameterName, sqlParameters[i].Value);
+                                }
+
+                                oSqlCmd.Parameters.AddRange(parameters);
+                            }
                         }
 
                         return oSqlCmd.ExecuteNonQuery();
@@ -212,7 +253,7 @@ namespace DAO
         /// </summary>
         /// <param name="sqlQuery">The query to get the data.</param>
         /// <returns>DataTable object with the data.</returns>
-        public DataTable FillDataTable(string sqlQuery, SqlParameter[] sqlParameters)
+        public DataTable FillDataTable(string sqlQuery, List<SqlParameter> sqlParameters)
         {
             try
             {
@@ -236,9 +277,19 @@ namespace DAO
                         oSqlCmd.Connection = oSqlConn;
                         oSqlCmd.CommandText = sqlQuery;
 
-                        if (sqlParameters.Length > 0)
+                        if (sqlParameters != null)
                         {
-                            oSqlCmd.Parameters.AddRange(sqlParameters);
+                            if (sqlParameters.Count > 0)
+                            {
+                                SqlParameter[] parameters = new SqlParameter[sqlParameters.Count];
+
+                                for (int i = 0; i < sqlParameters.Count; i++)
+                                {
+                                    parameters[i] = new SqlParameter(sqlParameters[i].ParameterName, sqlParameters[i].Value);
+                                }
+
+                                oSqlCmd.Parameters.AddRange(parameters);
+                            }
                         }
 
                         using (oSqlDtAdptr = new SqlDataAdapter())
@@ -270,7 +321,7 @@ namespace DAO
         /// <param name="sqlQuery">The query to get the data.</param>
         /// <param name="transaction">The transaction used to perform the query.</param>
         /// <returns>DataTable object with the data.</returns>
-        public DataTable FillDataTable(string sqlQuery, SqlParameter[] sqlParameters, IDbTransaction transaction)
+        public DataTable FillDataTable(string sqlQuery, List<SqlParameter> sqlParameters, IDbTransaction transaction)
         {
             try
             {
@@ -290,9 +341,19 @@ namespace DAO
                         oSqlCmd.Transaction = (SqlTransaction)transaction;
                         oSqlCmd.CommandText = sqlQuery;
 
-                        if (sqlParameters.Length > 0)
+                        if (sqlParameters != null)
                         {
-                            oSqlCmd.Parameters.AddRange(sqlParameters);
+                            if (sqlParameters.Count > 0)
+                            {
+                                SqlParameter[] parameters = new SqlParameter[sqlParameters.Count];
+
+                                for (int i = 0; i < sqlParameters.Count; i++)
+                                {
+                                    parameters[i] = new SqlParameter(sqlParameters[i].ParameterName, sqlParameters[i].Value);
+                                }
+
+                                oSqlCmd.Parameters.AddRange(parameters);
+                            }
                         }
 
                         using (oSqlDtAdptr = new SqlDataAdapter())

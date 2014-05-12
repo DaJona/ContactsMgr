@@ -22,7 +22,6 @@ namespace DAO.Contacts
         {
             DataTable dt = new DataTable();
             string sqlSentence = "";
-            SqlParameter[] sqlParameters;
 
             try
             {
@@ -30,8 +29,8 @@ namespace DAO.Contacts
                 sqlSentence += "WHERE contacts.memberId = @memberId ";
                 sqlSentence += "ORDER BY contacts.firstName, contacts.lastName ";
 
-                sqlParameters = new SqlParameter[1];
-                sqlParameters[0] = new SqlParameter("@memberId", memberInfo.id);
+                List<SqlParameter> sqlParameters = new List<SqlParameter>();
+                sqlParameters.Add(new SqlParameter("@memberId", memberInfo.id));
 
                 dt = dbWrapper.FillDataTable(sqlSentence, sqlParameters);
             }
@@ -47,7 +46,6 @@ namespace DAO.Contacts
         {
             DataTable dt = new DataTable();
             string sqlSentence = "";
-            SqlParameter[] sqlParameters;
 
             try
             {
@@ -55,9 +53,9 @@ namespace DAO.Contacts
                 sqlSentence += "WHERE contacts.memberId = @memberId ";
                 sqlSentence += "AND contacts.id = @contactId ";
 
-                sqlParameters = new SqlParameter[2];
-                sqlParameters[0] = new SqlParameter("@memberId", memberInfo.id);
-                sqlParameters[1] = new SqlParameter("@contactId", contactId);
+                List<SqlParameter> sqlParameters = new List<SqlParameter>();
+                sqlParameters.Add(new SqlParameter("@memberId", memberInfo.id));
+                sqlParameters.Add(new SqlParameter("@contactId", contactId));
 
                 dt = dbWrapper.FillDataTable(sqlSentence, sqlParameters);
             }
@@ -72,41 +70,32 @@ namespace DAO.Contacts
         public int createContact(Contact enContact)
         {
             string sqlSentence = "";
-            SqlParameter[] sqlParameters;
 
             try
             {
                 sqlSentence += "INSERT INTO contacts (memberId, firstName, lastName, genre, email, mobileNumber, landlineNumber, isActive, picExtension, comments, createdAt) ";
                 sqlSentence += "VALUES (@memberId, @firstName, @lastName, @genre, @email, @mobileNumber, @landlineNumber, @isActive, @picExtension, @comments, @createdAt) ";
 
-                sqlParameters = new SqlParameter[11];
-                sqlParameters[0] = new SqlParameter("@memberId", memberInfo.id);
-                sqlParameters[1] = new SqlParameter("@firstName", enContact.firstName);
-                sqlParameters[2] = new SqlParameter("@lastName", enContact.lastName);
-                sqlParameters[3] = new SqlParameter("@genre", enContact.genre.ToUpper());
-                sqlParameters[4] = new SqlParameter("@email", enContact.email);
-                sqlParameters[5] = new SqlParameter("@mobileNumber", enContact.mobileNumber);
-                sqlParameters[6] = new SqlParameter("@landlineNumber", enContact.landlineNumber);
-                sqlParameters[7] = new SqlParameter("@isActive", true);
-                sqlParameters[8] = new SqlParameter("@createdAt", DateTime.Now.ToUniversalTime().ToString("yyyyMMdd HH:mm:ss"));
+                List<SqlParameter> sqlParameters = new List<SqlParameter>();
+                sqlParameters.Add(new SqlParameter("@memberId", memberInfo.id));
+                sqlParameters.Add(new SqlParameter("@firstName", enContact.firstName));
+                sqlParameters.Add(new SqlParameter("@lastName", enContact.lastName));
+                sqlParameters.Add(new SqlParameter("@genre", enContact.genre.ToUpper()));
+                sqlParameters.Add(new SqlParameter("@email", enContact.email));
+                sqlParameters.Add(new SqlParameter("@mobileNumber", enContact.mobileNumber));
+                sqlParameters.Add(new SqlParameter("@landlineNumber", enContact.landlineNumber));
+                sqlParameters.Add(new SqlParameter("@isActive", true));
+                sqlParameters.Add(new SqlParameter("@createdAt", DateTime.Now.ToUniversalTime().ToString("yyyyMMdd HH:mm:ss")));
 
                 if (enContact.picExtension == string.Empty)
-                {
-                    sqlParameters[9] = new SqlParameter("@picExtension", DBNull.Value);
-                }
+                    sqlParameters.Add(new SqlParameter("@picExtension", DBNull.Value));
                 else
-                {
-                    sqlParameters[9] = new SqlParameter("@picExtension", enContact.picExtension);
-                }
+                    sqlParameters.Add(new SqlParameter("@picExtension", enContact.picExtension));
 
                 if (enContact.comments == string.Empty)
-                {
-                    sqlParameters[10] = new SqlParameter("@comments", DBNull.Value);
-                }
+                    sqlParameters.Add(new SqlParameter("@comments", DBNull.Value));
                 else
-                {
-                    sqlParameters[10] = new SqlParameter("@comments", enContact.comments);
-                }
+                    sqlParameters.Add(new SqlParameter("@comments", enContact.comments));
 
                 return dbWrapper.Insert(sqlSentence, sqlParameters);
             }
@@ -119,7 +108,6 @@ namespace DAO.Contacts
         public void editContact(Contact enContact)
         {
             string sqlSentence = "";
-            SqlParameter[] sqlParameters;
 
             try
             {
@@ -134,24 +122,20 @@ namespace DAO.Contacts
                 sqlSentence += "WHERE contacts.memberId = @memberId ";
                 sqlSentence += "AND contacts.id = @contactId ";
 
-                sqlParameters = new SqlParameter[9];
-                sqlParameters[0] = new SqlParameter("@firstName", enContact.firstName);
-                sqlParameters[1] = new SqlParameter("@lastName", enContact.lastName);
-                sqlParameters[2] = new SqlParameter("@genre", enContact.genre.ToUpper());
-                sqlParameters[3] = new SqlParameter("@email", enContact.email);
-                sqlParameters[4] = new SqlParameter("@mobileNumber", enContact.mobileNumber);
-                sqlParameters[5] = new SqlParameter("@landlineNumber", enContact.landlineNumber);
-                sqlParameters[6] = new SqlParameter("@memberId", memberInfo.id);
-                sqlParameters[7] = new SqlParameter("@contactId", enContact.id);
+                List<SqlParameter> sqlParameters = new List<SqlParameter>();
+                sqlParameters.Add(new SqlParameter("@firstName", enContact.firstName));
+                sqlParameters.Add(new SqlParameter("@lastName", enContact.lastName));
+                sqlParameters.Add(new SqlParameter("@genre", enContact.genre.ToUpper()));
+                sqlParameters.Add(new SqlParameter("@email", enContact.email));
+                sqlParameters.Add(new SqlParameter("@mobileNumber", enContact.mobileNumber));
+                sqlParameters.Add(new SqlParameter("@landlineNumber", enContact.landlineNumber));
+                sqlParameters.Add(new SqlParameter("@memberId", memberInfo.id));
+                sqlParameters.Add(new SqlParameter("@contactId", enContact.id));
 
                 if (enContact.comments == string.Empty)
-                {
-                    sqlParameters[8] = new SqlParameter("@comments", DBNull.Value);
-                }
+                    sqlParameters.Add(new SqlParameter("@comments", DBNull.Value));
                 else
-                {
-                    sqlParameters[8] = new SqlParameter("@comments", enContact.comments);
-                }
+                    sqlParameters.Add(new SqlParameter("@comments", enContact.comments));
 
                 dbWrapper.UpdateDelete(sqlSentence, sqlParameters);
             }
@@ -164,7 +148,6 @@ namespace DAO.Contacts
         public void editContactPicExtension(int contactId, string newPicExtension)
         {
             string sqlSentence = "";
-            SqlParameter[] sqlParameters;
 
             try
             {
@@ -173,18 +156,14 @@ namespace DAO.Contacts
                 sqlSentence += "WHERE contacts.memberId = @memberId ";
                 sqlSentence += "AND contacts.id = @contactId ";
 
-                sqlParameters = new SqlParameter[3];
-                sqlParameters[0] = new SqlParameter("@memberId", memberInfo.id);
-                sqlParameters[1] = new SqlParameter("@contactId", contactId);
+                List<SqlParameter> sqlParameters = new List<SqlParameter>();
+                sqlParameters.Add(new SqlParameter("@memberId", memberInfo.id));
+                sqlParameters.Add(new SqlParameter("@contactId", contactId));
 
                 if (newPicExtension == string.Empty)
-                {
-                    sqlParameters[2] = new SqlParameter("@picExtension", DBNull.Value);
-                }
+                    sqlParameters.Add(new SqlParameter("@picExtension", DBNull.Value));
                 else
-                {
-                    sqlParameters[2] = new SqlParameter("@picExtension", newPicExtension);
-                }
+                    sqlParameters.Add(new SqlParameter("@picExtension", newPicExtension));
 
                 dbWrapper.UpdateDelete(sqlSentence, sqlParameters);
             }
@@ -197,14 +176,13 @@ namespace DAO.Contacts
         public void deleteContact(int contactId)
         {
             string sqlSentence = "";
-            SqlParameter[] sqlParameters;
 
             try
             {
                 sqlSentence += "DELETE FROM contacts WHERE contacts.id = @contactId ";
 
-                sqlParameters = new SqlParameter[1];
-                sqlParameters[0] = new SqlParameter("@contactId", contactId);
+                List<SqlParameter> sqlParameters = new List<SqlParameter>();
+                sqlParameters.Add(new SqlParameter("@contactId", contactId));
 
                 dbWrapper.UpdateDelete(sqlSentence, sqlParameters);
             }
@@ -217,7 +195,6 @@ namespace DAO.Contacts
         public void deactivateContact(int contactId)
         {
             string sqlSentence = "";
-            SqlParameter[] sqlParameters;
 
             try
             {
@@ -226,10 +203,10 @@ namespace DAO.Contacts
                 sqlSentence += "WHERE contacts.memberId = @memberId ";
                 sqlSentence += "AND contacts.id = @contactId ";
 
-                sqlParameters = new SqlParameter[3];
-                sqlParameters[0] = new SqlParameter("@isActive", false);
-                sqlParameters[1] = new SqlParameter("@memberId", memberInfo.id);
-                sqlParameters[2] = new SqlParameter("@contactId", contactId);
+                List<SqlParameter> sqlParameters = new List<SqlParameter>();
+                sqlParameters.Add(new SqlParameter("@isActive", false));
+                sqlParameters.Add(new SqlParameter("@memberId", memberInfo.id));
+                sqlParameters.Add(new SqlParameter("@contactId", contactId));
 
                 dbWrapper.UpdateDelete(sqlSentence, sqlParameters);
             }
@@ -242,7 +219,6 @@ namespace DAO.Contacts
         public void activateContact(int contactId)
         {
             string sqlSentence = "";
-            SqlParameter[] sqlParameters;
 
             try
             {
@@ -251,10 +227,10 @@ namespace DAO.Contacts
                 sqlSentence += "WHERE contacts.memberId = @memberId ";
                 sqlSentence += "AND contacts.id = @contactId ";
 
-                sqlParameters = new SqlParameter[3];
-                sqlParameters[0] = new SqlParameter("@isActive", true);
-                sqlParameters[1] = new SqlParameter("@memberId", memberInfo.id);
-                sqlParameters[2] = new SqlParameter("@contactId", contactId);
+                List<SqlParameter> sqlParameters = new List<SqlParameter>();
+                sqlParameters.Add(new SqlParameter("@isActive", true));
+                sqlParameters.Add(new SqlParameter("@memberId", memberInfo.id));
+                sqlParameters.Add(new SqlParameter("@contactId", contactId));
 
                 dbWrapper.UpdateDelete(sqlSentence, sqlParameters);
             }
