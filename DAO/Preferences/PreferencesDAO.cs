@@ -10,9 +10,9 @@ namespace DAO.Preferences
     public class PreferencesDAO
     {
         private DBWrapper dbWrapper;
-        private SessionMemberInfo memberInfo;
+        private SessionMemberInfoDTO memberInfo;
 
-        public PreferencesDAO(SessionMemberInfo sessionMemberInfo)
+        public PreferencesDAO(SessionMemberInfoDTO sessionMemberInfo)
         {
             dbWrapper = new DBWrapper();
             memberInfo = sessionMemberInfo;
@@ -155,6 +155,8 @@ namespace DAO.Preferences
             }
         }
 
+        #region Return data
+
         private object getConvertedDatatable(DataTable data, Type returnType)
         {
             if (data.Rows.Count == 0)
@@ -187,5 +189,7 @@ namespace DAO.Preferences
 
             return convertedDatatable;
         }
+
+        #endregion        
     }
 }

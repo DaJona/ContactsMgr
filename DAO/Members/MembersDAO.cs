@@ -115,6 +115,8 @@ namespace DAO.Members
             }
         }
 
+        #region Return data
+
         private object getConvertedDatatable(DataTable data, Type returnType)
         {
             if (data.Rows.Count == 0)
@@ -165,5 +167,7 @@ namespace DAO.Members
 
             return convertedDatatable;
         }
+
+        #endregion
     }
 }

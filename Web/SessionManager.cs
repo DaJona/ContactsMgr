@@ -9,7 +9,7 @@ namespace Web
 
         public static void create(int memberId, string memberName, string memberLang, int memberTimeZoneMinsOffset)
         {
-            SessionMemberInfo enSessionMemberInfo = new SessionMemberInfo();
+            SessionMemberInfoDTO enSessionMemberInfo = new SessionMemberInfoDTO();
 
             enSessionMemberInfo.id = memberId;
             enSessionMemberInfo.name = memberName;
@@ -19,7 +19,7 @@ namespace Web
             sessionMemberInfo = enSessionMemberInfo;
         }
 
-        public static SessionMemberInfo sessionMemberInfo
+        public static SessionMemberInfoDTO sessionMemberInfo
         {
             get
             {
@@ -29,7 +29,7 @@ namespace Web
                 }
                 else
                 {
-                    return (SessionMemberInfo)HttpContext.Current.Session[memberInfo];
+                    return (SessionMemberInfoDTO)HttpContext.Current.Session[memberInfo];
                 }
             }
             set

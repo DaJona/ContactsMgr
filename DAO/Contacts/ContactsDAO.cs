@@ -1,4 +1,5 @@
-﻿using DTO.System;
+﻿using DTO.Contacts;
+using DTO.System;
 using Entity.Contacts;
 using System;
 using System.Collections.Generic;
@@ -10,26 +11,87 @@ namespace DAO.Contacts
     public class ContactsDAO
     {
         private DBWrapper dbWrapper;
-        private SessionMemberInfo memberInfo;
+        private SessionMemberInfoDTO memberInfo;
 
-        public ContactsDAO(SessionMemberInfo sessionMemberInfo)
+        public ContactsDAO(SessionMemberInfoDTO sessionMemberInfo)
         {
             dbWrapper = new DBWrapper();
             memberInfo = sessionMemberInfo;
         }
 
-        public List<Contact> getContacts()
+        public List<Contact> getContacts(SearchContactDTO searchOptions = null)
         {
             DataTable dt = new DataTable();
+            List<SqlParameter> sqlParameters = new List<SqlParameter>();
             string sqlSentence = "";
 
             try
             {
                 sqlSentence += "SELECT * FROM contacts ";
                 sqlSentence += "WHERE contacts.memberId = @memberId ";
+
+                if (searchOptions != null)
+                {
+                    if (searchOptions.firstName != string.Empty)
+                        sqlSentence += "AND contacts.firstName LIKE '%" + searchOptions.firstName + "%' ";
+
+                    if (searchOptions.lastName != string.Empty)
+                        sqlSentence += "AND contacts.lastName LIKE '%" + searchOptions.lastName + "%' ";
+
+                    if (searchOptions.genre != string.Empty)
+                        if (searchOptions.genre.ToUpper() == "F" || searchOptions.genre.ToUpper() == "M")
+                        {
+                            sqlSentence += "AND contacts.genre = @genre ";
+                            sqlParameters.Add(new SqlParameter("@genre", searchOptions.genre));
+                        }
+
+                    if (searchOptions.email != string.Empty)
+                        sqlSentence += "AND contacts.email LIKE '%" + searchOptions.email + "%' ";
+
+                    if (searchOptions.mobileNumber != string.Empty)
+                        sqlSentence += "AND contacts.mobileNumber LIKE '%" + searchOptions.mobileNumber + "%' ";
+
+                    if (searchOptions.landlineNumber != string.Empty)
+                        sqlSentence += "AND contacts.landlineNumber LIKE '%" + searchOptions.landlineNumber + "%' ";
+
+                    if (searchOptions.onlyActive && !searchOptions.onlyInactive)
+                    {
+                        sqlSentence += "AND contacts.isActive = @active ";
+                        sqlParameters.Add(new SqlParameter("@active", true));
+                    }
+
+                    if (searchOptions.onlyInactive && !searchOptions.onlyActive)
+                    {
+                        sqlSentence += "AND contacts.isActive = @active ";
+                        sqlParameters.Add(new SqlParameter("@active", false));
+                    }
+
+                    if (searchOptions.onlyWithPicture && !searchOptions.onlyWithoutPicture)
+                        sqlSentence += "AND contacts.picExtension IS NOT NULL ";
+
+                    if (searchOptions.onlyWithoutPicture && !searchOptions.onlyWithPicture)
+                        sqlSentence += "AND contacts.picExtension IS NULL ";
+
+                    if (searchOptions.comments != string.Empty)
+                        sqlSentence += "AND contacts.comments LIKE '%" + searchOptions.comments + "%' ";
+
+                    if (searchOptions.createdSince != null && searchOptions.createdUntil != null)
+                        if (searchOptions.createdSince <= searchOptions.createdUntil)
+                        {
+                            sqlSentence += "AND (contacts.createdAt BETWEEN @dateSince AND @dateUntil) ";
+                            SqlParameter dateSince = new SqlParameter("@dateSince", searchOptions.createdSince);
+                            SqlParameter dateUntil = new SqlParameter("@dateUntil", searchOptions.createdUntil);
+
+                            dateSince.DbType = DbType.DateTime;
+                            dateUntil.DbType = DbType.DateTime;
+
+                            sqlParameters.Add(dateSince);
+                            sqlParameters.Add(dateUntil);
+                        }
+                }                
+
                 sqlSentence += "ORDER BY contacts.firstName, contacts.lastName ";
 
-                List<SqlParameter> sqlParameters = new List<SqlParameter>();
                 sqlParameters.Add(new SqlParameter("@memberId", memberInfo.id));
 
                 dt = dbWrapper.FillDataTable(sqlSentence, sqlParameters);
@@ -240,13 +302,15 @@ namespace DAO.Contacts
             }
         }
 
+        #region Return data
+
         private object getConvertedDatatable(DataTable data, Type returnType)
         {
             if (data.Rows.Count == 0)
             {
                 return null;
             }
-            
+
             object convertedDatatable;
 
             if (returnType == typeof(Contact))
@@ -298,5 +362,7 @@ namespace DAO.Contacts
 
             return convertedDatatable;
         }
+
+        #endregion        
     }
 }

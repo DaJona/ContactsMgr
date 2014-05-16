@@ -27,26 +27,35 @@ namespace Web.Site.Contacts
             try
             {
                 ContactsService contactsService = new ContactsService(SessionManager.sessionMemberInfo);
+                TransactionResultDTO result;
                 List<Contact> listContacts;
 
-                listContacts = contactsService.getContacts();
-                if (listContacts != null)
+                result = contactsService.getContacts();
+                if (result.code == TransactionResultDTO.transactionResultCode.Success)
                 {
-                    grdContacts.DataSource = listContacts;
-                    regQuantity.Text = listContacts.Count.ToString();
+                    listContacts = (List<Contact>)result.object1;
+                    if (listContacts != null)
+                    {
+                        grdContacts.DataSource = listContacts;
+                        regQuantity.Text = listContacts.Count.ToString();
 
-                    divData.Visible = true;
-                    divNoData.Visible = false;
+                        divData.Visible = true;
+                        divNoData.Visible = false;
+                    }
+                    else
+                    {
+                        grdContacts.DataSource = null;
+
+                        divData.Visible = false;
+                        divNoData.Visible = true;
+                    }
+
+                    grdContacts.DataBind();
                 }
                 else
                 {
-                    grdContacts.DataSource = null;
-
-                    divData.Visible = false;
-                    divNoData.Visible = true;
-                }
-
-                grdContacts.DataBind();
+                    showError(result.failureReason);
+                }                
             }
             catch (Exception)
             {

@@ -41,14 +41,14 @@ namespace Web.Site.Preferences
             {
                 PreferencesService preferencesService = new PreferencesService(SessionManager.sessionMemberInfo);
                 PasswordPreferencesDTO passwordPreferences = new PasswordPreferencesDTO();
-                TransactionResult result;
+                TransactionResultDTO result;
 
                 passwordPreferences.memberId = SessionManager.sessionMemberInfo.id;
                 passwordPreferences.actualPassword = txtActualPass.Text;
                 passwordPreferences.newPassword = txtNewPass.Text;
 
                 result = preferencesService.updatePasswordPreferences(passwordPreferences);
-                if (result.code == TransactionResult.transactionResultCode.Success)
+                if (result.code == TransactionResultDTO.transactionResultCode.Success)
                 {
                     InfoMessage.setMessage(HttpContext.GetGlobalResourceObject("Resource", "PreferenciasActualizadas").ToString(), Enums.infoMessageType.Success);
                 }

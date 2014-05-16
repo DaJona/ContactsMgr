@@ -24,7 +24,7 @@ namespace Web.Site.Contacts
             {
                 ContactsService contactsService = new ContactsService(SessionManager.sessionMemberInfo);
                 Contact newContact = new Contact();
-                TransactionResult result;
+                TransactionResultDTO result;
 
                 // Variables to manage the contact pic file
                 string fileExtension = "";
@@ -52,7 +52,7 @@ namespace Web.Site.Contacts
                 newContact.comments = txtComments.Text;
                 
                 result = contactsService.createContact(newContact);
-                if (result.code == TransactionResult.transactionResultCode.Success)
+                if (result.code == TransactionResultDTO.transactionResultCode.Success)
                 {
                     int createdContactId = result.affectedId;
 

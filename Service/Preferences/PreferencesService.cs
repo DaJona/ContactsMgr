@@ -13,12 +13,12 @@ namespace Service.Preferences
 {
     public class PreferencesService
     {
-        private SessionMemberInfo memberInfo;
+        private SessionMemberInfoDTO memberInfo;
         private PreferencesDAO preferencesDAO;
         private ResourceManager resourceManager;
         private CultureInfo cultureInfo;
 
-        public PreferencesService(SessionMemberInfo sessionMemberInfo)
+        public PreferencesService(SessionMemberInfoDTO sessionMemberInfo)
         {
             preferencesDAO = new PreferencesDAO(sessionMemberInfo);
             memberInfo = sessionMemberInfo;
@@ -86,9 +86,9 @@ namespace Service.Preferences
             }
         }
 
-        public TransactionResult updatePasswordPreferences(PasswordPreferencesDTO passwordPreferences)
+        public TransactionResultDTO updatePasswordPreferences(PasswordPreferencesDTO passwordPreferences)
         {
-            TransactionResult result = new TransactionResult();
+            TransactionResultDTO result = new TransactionResultDTO();
 
             try
             {
@@ -107,11 +107,11 @@ namespace Service.Preferences
 
                     preferencesDAO.updatePasswordPreferences(passwordPreferences);
 
-                    result.code = TransactionResult.transactionResultCode.Success;
+                    result.code = TransactionResultDTO.transactionResultCode.Success;
                 }
                 else
                 {
-                    result.code = TransactionResult.transactionResultCode.Failed;
+                    result.code = TransactionResultDTO.transactionResultCode.Failed;
                     result.failureReason = "ErrorContrasenaActualIncorrecta";
                     return result;
                 }

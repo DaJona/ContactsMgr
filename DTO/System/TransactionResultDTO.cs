@@ -1,7 +1,7 @@
 ﻿
 namespace DTO.System
 {
-    public class TransactionResult
+    public class TransactionResultDTO
     {
         public enum transactionResultCode
         {

@@ -31,9 +31,9 @@ namespace Service.Members
         private const int PASSWORD_LENGTH = 90;
         private const int LANG_LENGTH = 5;
 
-        private TransactionResult validateEntity(Member entityToValidate)
+        private TransactionResultDTO validateEntity(Member entityToValidate)
         {
-            TransactionResult result = new TransactionResult();
+            TransactionResultDTO result = new TransactionResultDTO();
 
             try
             {
@@ -43,7 +43,7 @@ namespace Service.Members
                 // Validate real name required
                 if (entityToValidate.realName == string.Empty)
                 {
-                    result.code = TransactionResult.transactionResultCode.Failed;
+                    result.code = TransactionResultDTO.transactionResultCode.Failed;
                     result.failureReason = resourceManager.GetString("ErrorNombreCompletoReq", cultureInfo);
                     return result;
                 }
@@ -51,7 +51,7 @@ namespace Service.Members
                 // Validate real name length
                 if (entityToValidate.realName.Length > REALNAME_LENGTH)
                 {
-                    result.code = TransactionResult.transactionResultCode.Failed;
+                    result.code = TransactionResultDTO.transactionResultCode.Failed;
                     result.failureReason = String.Format(lengthError, resourceManager.GetString("NombreCompleto", cultureInfo), REALNAME_LENGTH);
                     return result;
                 }
@@ -59,7 +59,7 @@ namespace Service.Members
                 // Validate display name required
                 if (entityToValidate.displayName == string.Empty)
                 {
-                    result.code = TransactionResult.transactionResultCode.Failed;
+                    result.code = TransactionResultDTO.transactionResultCode.Failed;
                     result.failureReason = resourceManager.GetString("ErrorNombreVisibleReq", cultureInfo);
                     return result;
                 }
@@ -67,7 +67,7 @@ namespace Service.Members
                 // Validate display name length
                 if (entityToValidate.displayName.Length > DISPLAYNAME_LENGTH)
                 {
-                    result.code = TransactionResult.transactionResultCode.Failed;
+                    result.code = TransactionResultDTO.transactionResultCode.Failed;
                     result.failureReason = String.Format(lengthError, resourceManager.GetString("NombreVisible", cultureInfo), DISPLAYNAME_LENGTH);
                     return result;
                 }
@@ -75,7 +75,7 @@ namespace Service.Members
                 // Validate email required
                 if (entityToValidate.email == string.Empty)
                 {
-                    result.code = TransactionResult.transactionResultCode.Failed;
+                    result.code = TransactionResultDTO.transactionResultCode.Failed;
                     result.failureReason = resourceManager.GetString("ErrorEmailReq", cultureInfo);
                     return result;
                 }
@@ -83,7 +83,7 @@ namespace Service.Members
                 // Validate email format
                 if (!Validations.isValidEmailFormat(entityToValidate.email))
                 {
-                    result.code = TransactionResult.transactionResultCode.Failed;
+                    result.code = TransactionResultDTO.transactionResultCode.Failed;
                     result.failureReason = String.Format(formatError, resourceManager.GetString("Email", cultureInfo));
                     return result;
                 }
@@ -91,7 +91,7 @@ namespace Service.Members
                 // Validate email length
                 if (entityToValidate.email.Length > EMAIL_LENGTH)
                 {
-                    result.code = TransactionResult.transactionResultCode.Failed;
+                    result.code = TransactionResultDTO.transactionResultCode.Failed;
                     result.failureReason = String.Format(lengthError, resourceManager.GetString("Email", cultureInfo), EMAIL_LENGTH);
                     return result;
                 }
@@ -99,7 +99,7 @@ namespace Service.Members
                 // Validate password required
                 if (entityToValidate.password == string.Empty)
                 {
-                    result.code = TransactionResult.transactionResultCode.Failed;
+                    result.code = TransactionResultDTO.transactionResultCode.Failed;
                     result.failureReason = resourceManager.GetString("ErrorContrasenaReq", cultureInfo);
                     return result;
                 }
@@ -107,7 +107,7 @@ namespace Service.Members
                 // Validate password length
                 if (entityToValidate.password.Length > PASSWORD_LENGTH)
                 {
-                    result.code = TransactionResult.transactionResultCode.Failed;
+                    result.code = TransactionResultDTO.transactionResultCode.Failed;
                     result.failureReason = String.Format(lengthError, resourceManager.GetString("Contrasena", cultureInfo), PASSWORD_LENGTH);
                     return result;
                 }
@@ -115,7 +115,7 @@ namespace Service.Members
                 // Validate lang required
                 if (entityToValidate.language == string.Empty)
                 {
-                    result.code = TransactionResult.transactionResultCode.Failed;
+                    result.code = TransactionResultDTO.transactionResultCode.Failed;
                     result.failureReason = resourceManager.GetString("ErrorIdiomaReq", cultureInfo);
                     return result;
                 }
@@ -123,12 +123,12 @@ namespace Service.Members
                 // Validate landline number length
                 if (entityToValidate.language.Length > LANG_LENGTH)
                 {
-                    result.code = TransactionResult.transactionResultCode.Failed;
+                    result.code = TransactionResultDTO.transactionResultCode.Failed;
                     result.failureReason = String.Format(lengthError, resourceManager.GetString("Idioma", cultureInfo), LANG_LENGTH);
                     return result;
                 }
 
-                result.code = TransactionResult.transactionResultCode.Success;
+                result.code = TransactionResultDTO.transactionResultCode.Success;
             }
             catch (Exception ex)
             {
@@ -140,9 +140,9 @@ namespace Service.Members
 
         #endregion
 
-        public TransactionResult login(string memberUser, string memberPassword)
+        public TransactionResultDTO login(string memberUser, string memberPassword)
         {
-            TransactionResult result = new TransactionResult();
+            TransactionResultDTO result = new TransactionResultDTO();
 
             try
             {
@@ -151,12 +151,12 @@ namespace Service.Members
 
                 if (member != null)
                 {
-                    result.code = TransactionResult.transactionResultCode.Success;
+                    result.code = TransactionResultDTO.transactionResultCode.Success;
                     result.object1 = member;
                 }
                 else
                 {
-                    result.code = TransactionResult.transactionResultCode.Failed;
+                    result.code = TransactionResultDTO.transactionResultCode.Failed;
                     result.failureReason = resourceManager.GetString("ErrorUsuarioContrasenaIncorrectos", cultureInfo);
                 }
             }
@@ -168,9 +168,9 @@ namespace Service.Members
             return result;
         }
 
-        public TransactionResult createMember(Member enMember)
+        public TransactionResultDTO createMember(Member enMember)
         {
-            TransactionResult result = new TransactionResult();
+            TransactionResultDTO result = new TransactionResultDTO();
 
             try
             {
@@ -178,20 +178,20 @@ namespace Service.Members
                 Member existingMember = membersDao.getMember(enMember.email);
                 if (existingMember != null)
                 {
-                    result.code = TransactionResult.transactionResultCode.Failed;
+                    result.code = TransactionResultDTO.transactionResultCode.Failed;
                     result.failureReason = resourceManager.GetString("ErrorEmailYaExiste", cultureInfo);
                     return result;
                 }
 
                 result = validateEntity(enMember);
-                if (result.code == TransactionResult.transactionResultCode.Success)
+                if (result.code == TransactionResultDTO.transactionResultCode.Success)
                 {
                     // Overwrite the member password with more secure one
                     enMember.password = Encoding.sha512(enMember.email, enMember.password);
 
                     membersDao.createMember(enMember);
 
-                    result.code = TransactionResult.transactionResultCode.Success;
+                    result.code = TransactionResultDTO.transactionResultCode.Success;
                 }                
             }
             catch (Exception ex)

@@ -32,7 +32,7 @@ namespace Web
                 {
                     MembersService membersService = new MembersService(ddlPageLanguage.SelectedValue);
                     Member enMember = new Member();
-                    TransactionResult result;
+                    TransactionResultDTO result;
 
                     enMember.realName = txtRealName.Text;
                     enMember.displayName = txtDisplayName.Text;
@@ -41,7 +41,7 @@ namespace Web
                     enMember.language = ddlLanguage.SelectedValue;
 
                     result = membersService.createMember(enMember);
-                    if (result.code == TransactionResult.transactionResultCode.Success)
+                    if (result.code == TransactionResultDTO.transactionResultCode.Success)
                     {
                         EMail.sendAccountActivationEmail();
                     }

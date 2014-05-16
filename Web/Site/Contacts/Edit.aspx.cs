@@ -78,7 +78,7 @@ namespace Web.Site.Contacts
             {
                 ContactsService contactsService = new ContactsService(SessionManager.sessionMemberInfo);
                 Contact editedContact = new Contact();
-                TransactionResult result;
+                TransactionResultDTO result;
 
                 // Variables to manage the contact pic file
                 string fileExtension = "";
@@ -107,7 +107,7 @@ namespace Web.Site.Contacts
                 editedContact.comments = txtComments.Text;
 
                 result = contactsService.editContact(editedContact, chkDeletePic.Checked);
-                if (result.code == TransactionResult.transactionResultCode.Success)
+                if (result.code == TransactionResultDTO.transactionResultCode.Success)
                 {
                     try
                     {

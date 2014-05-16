@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO.System
 {
-    public class SessionMemberInfo
+    public class SessionMemberInfoDTO
     {
         public int id { get; set; }
         public string name { get; set; }

@@ -55,10 +55,10 @@ namespace Web
                 try
                 {
                     MembersService membersService = new MembersService(ddlPageLanguage.SelectedValue);
-                    TransactionResult result;
+                    TransactionResultDTO result;
                     
                     result = membersService.login(txtEmail.Text, txtPass.Text);
-                    if (result.code == TransactionResult.transactionResultCode.Success)
+                    if (result.code == TransactionResultDTO.transactionResultCode.Success)
                     {
                         Member logedMember = (Member)result.object1;
                         SessionManager.create(logedMember.id, logedMember.displayName, logedMember.language, Convert.ToInt32(timeZoneOffset.Value));

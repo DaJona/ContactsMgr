@@ -174,6 +174,9 @@
   <data name="CrearCuenta" xml:space="preserve">
     <value>Crear una cuenta</value>
   </data>
+  <data name="Desde" xml:space="preserve">
+    <value>desde</value>
+  </data>
   <data name="Editar" xml:space="preserve">
     <value>Editar</value>
   </data>
@@ -255,6 +258,12 @@
   <data name="ErrorNombreVisibleReq" xml:space="preserve">
     <value>Debe ingresar el Nombre Visible</value>
   </data>
+  <data name="ErrorRangoFechasIncompleto" xml:space="preserve">
+    <value>El rango de fechas '{0}' debe estar completo</value>
+  </data>
+  <data name="ErrorRangoFechasIncorrecto" xml:space="preserve">
+    <value>El rango de fechas '{0}' no es correcto. Verifica que no hayas especificado un valor 'desde' mayor al valor 'hasta'</value>
+  </data>
   <data name="ErrorUsuarioContrasenaIncorrectos" xml:space="preserve">
     <value>El Usuario o la Contraseña no son correctos</value>
   </data>
@@ -264,6 +273,9 @@
   <data name="Estado" xml:space="preserve">
     <value>Estado</value>
   </data>
+  <data name="FechaCreacion" xml:space="preserve">
+    <value>Fecha de creación</value>
+  </data>
   <data name="Femenino" xml:space="preserve">
     <value>Femenino</value>
   </data>
@@ -272,6 +284,9 @@
   </data>
   <data name="GenialExclamacion" xml:space="preserve">
     <value>¡Genial!</value>
+  </data>
+  <data name="Hasta" xml:space="preserve">
+    <value>hasta</value>
   </data>
   <data name="Idioma" xml:space="preserve">
     <value>Idioma</value>
