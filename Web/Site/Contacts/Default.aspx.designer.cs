@@ -13,15 +13,6 @@ namespace Web.Site.Contacts {
     public partial class Default {
         
         /// <summary>
-        /// lnkCreate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkCreate;
-        
-        /// <summary>
         /// divData control.
         /// </summary>
         /// <remarks>
@@ -31,13 +22,13 @@ namespace Web.Site.Contacts {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divData;
         
         /// <summary>
-        /// lnkDeleteMasive control.
+        /// lnkCreate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkDeleteMasive;
+        protected global::System.Web.UI.WebControls.LinkButton lnkCreate;
         
         /// <summary>
         /// grdContacts control.
@@ -110,32 +101,5 @@ namespace Web.Site.Contacts {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.ModalPopupExtender mpeDeleteContact;
-        
-        /// <summary>
-        /// deleteSelectedContactsModal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel deleteSelectedContactsModal;
-        
-        /// <summary>
-        /// cmdDeleteSelectedContacts control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cmdDeleteSelectedContacts;
-        
-        /// <summary>
-        /// mpeDeleteSelectedContacts control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender mpeDeleteSelectedContacts;
     }
 }
