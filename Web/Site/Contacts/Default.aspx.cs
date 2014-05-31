@@ -174,10 +174,5 @@ namespace Web.Site.Contacts
                 showError(HttpContext.GetGlobalResourceObject("Resource", "ErrorGeneral").ToString());
             }
         }
-
-        protected void lnkDeleteMasive_Click(object sender, EventArgs e)
-        {
-            mpeDeleteSelectedContacts.Show();
-        }
     }
 }
